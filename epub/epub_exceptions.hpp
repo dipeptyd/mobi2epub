@@ -1,18 +1,3 @@
-// =====================================================================================
-// 
-//       Filename:  epub_exceptions.hpp
-// 
-//    Description:  
-// 
-//        Version:  1.0
-//        Created:  01/04/2013 09:40:17 PM
-//       Revision:  none
-//       Compiler:  g++
-// 
-//         Author:  YOUR NAME (), 
-//        Company:  
-// 
-// =====================================================================================
 #pragma once
 #include <exception>
 namespace epub
