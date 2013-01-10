@@ -38,7 +38,8 @@ std::string content_opf = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\
 </package>\n\
 ";
 
-mobi2epub::mobi2epub(const mobi::mobireader &m, bool safe, bool no_cleanup):safe(safe),no_cleanup(no_cleanup),vanilla_base(true)
+mobi2epub::mobi2epub(const mobi::mobireader &m, bool safe, bool no_cleanup):\
+    safe(safe),no_cleanup(no_cleanup),vanilla_base(true)
 {
     this->m = m;
     base = "~tmp_" + this->m.get_file_name().substr(0, this->m.get_file_name().find_last_of('.'));
@@ -71,9 +72,11 @@ void mobi2epub::directory_structure() const
         }
     }
     boost::filesystem::create_directory(base);
-    boost::filesystem::create_directory(base / "OEBPS");
-    boost::filesystem::create_directory(base / "OEBPS" / "text");
-    boost::filesystem::create_directory(base / "META-INF");
+    for (auto x: {"OEBPS","OEBPS/text", "META-INF"})
+    {
+        boost::filesystem::create_directory(base / x);
+    }
+
 
     std::ofstream outfile((base / "META-INF/container.xml").c_str());
     if(!outfile.good()) { throw file_write_exception(); }
@@ -117,18 +120,7 @@ void mobi2epub::save_to_directory() const
     std::stringstream itemids;
     std::stringstream itemrefs;
 
-    TidyDoc tdoc = tidyCreate();
-
-    //16,035 (4,952 direct, 11,083 indirect) bytes in 1 blocks are definitely lost in loss record 48 of 48
-    //tidyhtml, stahp.
-
-    tidyOptSetBool( tdoc, TidyXhtmlOut, yes);
-    tidyOptSetBool( tdoc, TidyForceOutput, yes);
-    tidyOptSetBool( tdoc, TidyShowWarnings, no);
-    tidyOptSetBool( tdoc, TidyQuiet, yes);
-
-    tidyOptSetInt( tdoc, TidyShowErrors, 0);
-    tidySetCharEncoding(tdoc, "utf8");
+    html::tidyhtml tidyh;
 
     for(std::string &x: v)
     {
@@ -137,11 +129,8 @@ void mobi2epub::save_to_directory() const
         boost::replace_all(x, "filepos=", "id=");
 
         //here be dragons
-        tidySetErrorBuffer(tdoc, NULL);
-        tidyParseString(tdoc, x.c_str());
-        tidyCleanAndRepair( tdoc );
-        tidyRunDiagnostics( tdoc );
-        tidySaveFile(tdoc, (base / "/OEBPS/text/" / name).c_str());
+        std::string path = (base / "/OEBPS/text/" / name).string();
+        tidyh.parse(x, path);
 
         itemids << boost::format(itemid) % name;
         itemrefs <<  boost::format(itemref) % name;

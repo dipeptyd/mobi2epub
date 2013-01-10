@@ -6,6 +6,7 @@
 #include <vector>
 #include "mobi_exceptions.hpp"
 #include "mobi_headers.hpp"
+#include "mobi_headers_handler.hpp"
 #include "compression/compression.hpp"
 namespace mobi
 {
@@ -34,12 +35,13 @@ class mobireader{
     //#########################
     compression *reader;
     std::ifstream *file;
+    header_handler *handler;
     char *title;
 
     void parse_header();
     void set_compression();
 
-    std::string get_section_uncompressed(int sec) const;
+    std::string get_section_uncompressed(unsigned sec) const;
 public:
     mobireader(std::string &input_file_name);
     mobireader(const mobireader &m);

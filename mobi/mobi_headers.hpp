@@ -14,9 +14,16 @@ typedef uint16_t uint16;
 typedef uint32_t uint32;
 typedef uint64_t uint64;
 
+//TODO:test
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 inline void bswap(uint16 &x){x = __builtin_bswap32(x << 16);}
 inline void bswap(uint32 &x){x = __builtin_bswap32(x);}
 inline void bswap(uint64 &x){x = __builtin_bswap64(x);}
+#else
+inline void bswap(uint16 &x){}
+inline void bswap(uint32 &x){}
+inline void bswap(uint64 &x){}
+#endif
 
 
 struct palmdoc_db_header;
@@ -24,6 +31,7 @@ struct palmdoc_header;
 struct mobi_header;
 struct rec_headers;
 struct image_data;
+
 #pragma pack(push)
 #pragma pack(1)
 struct palmdoc_db_header
@@ -38,7 +46,6 @@ struct palmdoc_db_header
     uint32 app_info;
     uint32 sort_info;
     char   type[8];
-    //char creator[4];
     uint32 u_id_seed;
     uint32 next_record_list;
     uint16 num_records;
@@ -110,28 +117,8 @@ struct mobi_header
                                        //24B till exth
 };
 
-struct rec_headers
-{
-    uint32   offset;
-    uint8    deleted   : 1;
-    uint8    dirty     : 1;
-    uint8    busy      : 1;
-    uint8    secret    : 1;
-    uint8    category  : 4;
-    char     uniqueID[3];
-};
-
-
-
-struct image_data
-{
-    char  *data;
-    size_t len;
-    char  *type;
-};
-
-
 #pragma pack(pop)
+
 static_assert((sizeof(palmdoc_db_header)==PALMDOC_DB_HEADER_LEN),"palmdoc_db_header");
 static_assert((sizeof(palmdoc_header)==PALMDOC_HEADER_LEN),"palmdoc_header");
 static_assert((sizeof(mobi_header)==MOBI_HEADER_LEN),"mobi_header");

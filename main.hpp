@@ -2,7 +2,6 @@
 #include "epub/epub.hpp"
 #include "optparse/OptionParser.h"
 #include <string>
-//using namespace std;
 using optparse::OptionParser;
 using mobi::mobireader;
 using epub::mobi2epub;

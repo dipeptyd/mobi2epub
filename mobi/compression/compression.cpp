@@ -8,6 +8,7 @@ namespace mobi
 
 
 
+//TODO stringstream still would be cool.
 void pd_compression::uncompress(uint8_t *src, size_t srcLen)
 {
     if(!this->destination.empty())

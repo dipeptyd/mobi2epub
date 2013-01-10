@@ -1,4 +1,5 @@
 #include "mobi_headers.hpp"
+
 void unretardify_header(palmdoc_db_header &x)
 {
     bswap(x.flags);
@@ -73,7 +74,6 @@ void unretardify_header(mobi_header &x)
     bswap(x.extra_record_data_flags);
     bswap(x.indx_record_offset);
 }
-
 
 void print_header(const mobi_header &x)
 {

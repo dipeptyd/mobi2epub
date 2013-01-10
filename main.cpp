@@ -12,10 +12,6 @@ int main(int argc, char **argv)
         return 1;
     }
 
-
-
-    std::string dest;
-
     mobireader m(options["filename"]);
     mobi2epub e(m);
     try

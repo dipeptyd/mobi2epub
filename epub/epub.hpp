@@ -3,13 +3,13 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sstream>
-#include <tidy.h>
 #include <boost/format.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/algorithm/string.hpp>
 #include "../mobi/mobi.hpp"
 #include "epub_exceptions.hpp"
+#include "tidyhtml_wrapper.hpp"
 
 
 namespace epub
@@ -46,7 +46,6 @@ public:
     void save_to_directory(std::string s);
     void directory_to_epub() const;
     void directory_to_epub(std::string s);
-
 
 };
 

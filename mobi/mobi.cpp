@@ -74,8 +74,6 @@ void mobireader::operator=(const mobireader &m)
     this->c_section = m.c_section;
 
     this->set_title(m.get_title());
-    //this->title = new char[strlen(m.title)+1];
-    //strcpy(this->title, m.title);
 
     
 }
@@ -86,12 +84,13 @@ mobireader::~mobireader()
     delete file;
     delete[] c_section.content;
     delete[] title;
+    delete handler;
 }
 
 void mobireader::parse_header()
 {
-    file->read((char *) &db_header, PALMDOC_DB_HEADER_LEN);
-    unretardify_header(db_header);
+
+    this->handler->read(db_header);
 
   if(!strcmp_is_a_worthless_pos(db_header.type,MOBI_TYPE,8))
       throw invalid_file_exception();
@@ -100,19 +99,12 @@ void mobireader::parse_header()
     for(int i=0;i<db_header.num_records;i++)
     {
         file->read((char *) &header_offset, sizeof(uint32));
-        //file->read((char *) &header_offset_unk, sizeof(uint32_t));
         file->ignore(sizeof(uint32));
         bswap(header_offset);
         header_offsets.push_back(header_offset);
     }
-    file->seekg(header_offsets[0]);
-
-    file->read((char *) &pd_header, PALMDOC_HEADER_LEN);
-    unretardify_header(pd_header);
-
-    file->read((char *) &mobi_header_, MOBI_HEADER_LEN);
-    unretardify_header(mobi_header_);
-
+    this->handler->offset(header_offsets[0]).read(pd_header);
+    this->handler->read(mobi_header_);
     this->set_compression();
     this->set_default_title();
 
@@ -140,19 +132,18 @@ void mobireader::set_default_title()
         {
             uint32 title_start;
             uint32 title_len;
-            file->seekg(header_offsets[0]+0x54);
+            this->handler->offset(header_offsets[0]+0x54)\
+                .read(title_start);
 
-            file->read((char *) &title_start, sizeof(uint32));
-            bswap(title_start);
-            file->read((char *) &title_len, sizeof(uint32));
-            bswap(title_len);
+            this->handler->read(title_len);
 
-            char _title[title_len+1];
-            file->seekg(header_offsets[0]+title_start);
-            file->read((char *) _title, title_len);
-            _title[title_len] = '\0';
+            char *_title = new char[title_len+1];
+
+            handler->offset(header_offsets[0]+title_start)\
+                .read(_title,title_len);
 
             this->set_title(_title);
+            delete[] _title;
 
 
         }
@@ -163,6 +154,7 @@ void mobireader::load_file(std::string &input_file_name)
     this->file = new std::ifstream(input_file_name.c_str());
     if(!file->good())
         throw no_such_file_exception();
+    this->handler = new header_handler(this->file);
 }
 
 
@@ -174,19 +166,18 @@ std::string mobireader::get_html() const
         out << this->get_section_uncompressed(i);
     }
     return out.str();
+
 }
 
-std::string mobireader::get_section_uncompressed(int sec) const
+std::string mobireader::get_section_uncompressed(unsigned sec) const
 {
 
-    if(sec+1>=header_offsets.size() or sec<0)
+    if(sec+1>=header_offsets.size())
         throw header_out_of_range_exception();
 
     size_t src_size = this->header_offsets[sec+1] - this->header_offsets[sec];
 
-    file->seekg(header_offsets[sec]);
-    file->read((char *) c_section.content, src_size);
-
+    handler->offset(header_offsets[sec]).read(c_section.content, src_size);
     unsigned trash = c_section.content[src_size-1] & 127; 
 
     reader->uncompress(c_section.content, src_size-trash); //ommit unnecessary bytes
@@ -207,9 +198,7 @@ void mobireader::set_compression()
     }
     else if(this->pd_header.compression == COMPRESSION_HUFFDIC)
     {
-
         throw unsupported_compressiontype_exception();
-
     }
     else
     {
