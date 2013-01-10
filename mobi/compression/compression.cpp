@@ -42,13 +42,11 @@ void pd_compression::uncompress(uint8_t *src, size_t srcLen)
         } 
         else 
         {
-            //if (src < srcEnd) 
-            //{//FIXME:redundant?
                 c = (c << 8) | *src++;
                 size_t back = (c >> 3) & 0x07ff;
                 size_t n = (c & 7) + 3;
                 std::string::iterator dst_back;
-                if(src+n > srcEnd+8) //TODO: o co tu chodzi
+                if(src+n > srcEnd+8) //TODO: wat
                     throw not_palmdoc_compression_exception();
                 dst_back = this->destination.end() - back;
                 while (n > 0) 
@@ -56,7 +54,6 @@ void pd_compression::uncompress(uint8_t *src, size_t srcLen)
                     this->destination += *dst_back++;
                     --n;
                 }
-            //}
         }
     }
 }
