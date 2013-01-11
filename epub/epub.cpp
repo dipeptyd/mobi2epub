@@ -42,7 +42,8 @@ mobi2epub::mobi2epub(const mobi::mobireader &m, bool safe, bool no_cleanup):\
     safe(safe),no_cleanup(no_cleanup),vanilla_base(true)
 {
     this->m = m;
-    base = "~tmp_" + this->m.get_file_name().substr(0, this->m.get_file_name().find_last_of('.'));
+    base = this->m.get_file_name().substr(0, this->m.get_file_name().find_last_of('.'));
+    base = boost::filesystem::absolute(base);
 }
 
 void mobi2epub::gen_content_opf(std::stringstream &itemids, std::stringstream &itemrefs) const
@@ -115,20 +116,19 @@ void mobi2epub::save_to_directory() const
     std::vector<std::string> v;
     iter_split(v, foo, boost::algorithm::first_finder("<mbp:pagebreak/>"));
 
-    unsigned i = 0;
 
     std::stringstream itemids;
     std::stringstream itemrefs;
 
     html::tidyhtml tidyh;
 
+    unsigned i = 0;
     for(std::string &x: v)
     {
         std::string name = "chapter" + std::to_string(++i) + ".html";
 
         boost::replace_all(x, "filepos=", "id=");
 
-        //here be dragons
         std::string path = (base / "/OEBPS/text/" / name).string();
         tidyh.parse(x, path);
 
@@ -152,7 +152,7 @@ void mobi2epub::cleanup() const
         std::cout << "Shall we delete " << base  << " (Y/n): ";
         std::cin >> c;
 
-        if(c != 'Y')
+        if(c == 'Y')
         {
             std::cout << "Continue anyway?: " << base  << " (Y/n): ";
             std::cin >> c; //because who would expect a sane behavior.
@@ -176,31 +176,28 @@ void mobi2epub::directory_to_epub(std::string s)
 }
 
 void mobi2epub::directory_to_epub() const
-{   //TODO: make it better, although it seems like the only C++ library
-    //that does it and has documentation, depends on Qt.
-    //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-    //░█░░░█▀█░█░░░█▀█░█▀█░█▀█░█▀▀░
-    //░█░░░█░█░█░░░█░█░█░█░█▀▀░█▀▀░
-    //░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░░░▀▀▀░
-    //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-    std::string filename_base;
-    if(this->vanilla_base)
-        filename_base = base.string().substr(5);
-    else
-        filename_base = base.string();
-    filename_base = filename_base + ".epub";
+{   
+    std::string filename_base = base.stem().string() + ".epub";
+    std::string current_dir = boost::filesystem::current_path().string();
+    std::string start_path = boost::filesystem::absolute(base).string();
+
+
+    chdir(boost::filesystem::absolute(base).c_str());
 
     #ifdef _WIN32
         throw terrible_operating_system_exception();//FIXME(not the os.)
     #else
-        std::string start_path = boost::filesystem::absolute(base).string();
-        chdir(boost::filesystem::absolute(base).c_str()); //FIXME: absolute paths more absolute.
-        if(system(("zip ../" + filename_base + " -qr *").c_str())!=0)
+
+        boost::filesystem::path p(current_dir);
+        p/=filename_base;
+
+        std::cout << "saving to " << p.string() << std::endl;
+
+        if(system(("zip " + p.string() + " -qr *").c_str())!=0)
             throw zip_exit_status_exception();
 
-        chdir("..");
-        if(start_path != boost::filesystem::absolute(base))
-            throw path_changed_exception();
+        chdir(current_dir.c_str());
+
     #endif
         this->cleanup();
 }
