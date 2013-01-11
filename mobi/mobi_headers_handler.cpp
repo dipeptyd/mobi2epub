@@ -8,7 +8,7 @@ namespace mobi
 
     }
 
-    void header_handler::read(palmdoc_db_header &db_header)
+    void header_handler::read(st_palmdoc_db &db_header)
     {
         file->read((char *) &db_header, PALMDOC_DB_HEADER_LEN);
         unretardify_header(db_header);
@@ -19,15 +19,15 @@ namespace mobi
         return *this;
     }
 
-    void header_handler::read(palmdoc_header &pd_header)
+    void header_handler::read(st_palmdoc &pd_header)
     {
         file->read((char *) &pd_header, PALMDOC_HEADER_LEN);
         unretardify_header(pd_header);
     }
-    void header_handler::read(mobi_header &mobi_header_)
+    void header_handler::read(st_mobi &st_mobi_)
     {
-        file->read((char *) &mobi_header_, MOBI_HEADER_LEN);
-        unretardify_header(mobi_header_);
+        file->read((char *) &st_mobi_, MOBI_HEADER_LEN);
+        unretardify_header(st_mobi_);
     }
     void header_handler::read(uint32_t &i)
     {

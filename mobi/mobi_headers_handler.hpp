@@ -8,14 +8,14 @@ namespace mobi
     {
         std::ifstream *file;
 
-        void operator=(header_handler &x);
-        header_handler(header_handler &x);
+        //header_handler operator=(header_handler &x);
+        //header_handler(header_handler &x);
         public:
-            header_handler offset(unsigned offset);
+            header_handler offset(unsigned offset);//TO
             header_handler(std::ifstream *file);
-            void read(palmdoc_db_header &db_header);
-            void read(palmdoc_header &pd_header);
-            void read(mobi_header &mobi_header_);
+            void read(st_palmdoc_db &db_header);
+            void read(st_palmdoc &pd_header);
+            void read(st_mobi &st_mobi_);
             void read(uint32_t &i);
             void read(char &i);
             void read(char *i, uint32_t n);

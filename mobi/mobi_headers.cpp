@@ -1,6 +1,6 @@
 #include "mobi_headers.hpp"
 
-void unretardify_header(palmdoc_db_header &x)
+void unretardify_header(st_palmdoc_db &x)
 {
     bswap(x.flags);
     bswap(x.version);
@@ -15,7 +15,7 @@ void unretardify_header(palmdoc_db_header &x)
     bswap(x.num_records);
 
 }
-void unretardify_header(palmdoc_header &x)
+void unretardify_header(st_palmdoc &x)
 {
     bswap(x.compression);
     bswap(x.garbage);
@@ -25,7 +25,7 @@ void unretardify_header(palmdoc_header &x)
     bswap(x.current_pos);
 
 }
-void unretardify_header(mobi_header &x)
+void unretardify_header(st_mobi &x)
 {
     bswap(x.header_len);
     bswap(x.mobi_type);
@@ -75,10 +75,10 @@ void unretardify_header(mobi_header &x)
     bswap(x.indx_record_offset);
 }
 
-void print_header(const mobi_header &x)
+void print_header(const st_mobi &x)
 {
 
-    std::cout<< "mobi_header                 "   << "\n\n";
+    std::cout<< "st_mobi                 "   << "\n\n";
     std::cout<< "id:                         "   << x.id << std::endl;
     std::cout<< "header_len:                 "   << x.header_len << std::endl;
     std::cout<< "mobi_type:                  "   << x.mobi_type << std::endl;
@@ -129,10 +129,10 @@ void print_header(const mobi_header &x)
     std::cout<< "extra_record_data_flags:    "   << x.extra_record_data_flags << std::endl;
     std::cout<< "indx_record_offset:         "   << x.indx_record_offset << std::endl;
 }
-void print_header(const palmdoc_db_header &x)
+void print_header(const st_palmdoc_db &x)
 {
 
-    std::cout <<"palmdoc_db_header           " << "\n\n" << std::endl;
+    std::cout <<"st_palmdoc_db           " << "\n\n" << std::endl;
     std::cout << "name[32]:                  " <<   x.name<< std::endl;
     std::cout << "flags:                     " <<   x.flags<< std::endl;
     std::cout << "version:                   " <<   x.version<< std::endl;
@@ -148,9 +148,9 @@ void print_header(const palmdoc_db_header &x)
     std::cout << "num_records:               " <<   x.num_records<< std::endl;
 
 }
-void print_header(const palmdoc_header &x)
+void print_header(const st_palmdoc &x)
 {
-    std::cout << "palmdoc_header              " << "\n\n";
+    std::cout << "st_palmdoc              " << "\n\n";
 
     std::cout << "compression:                "  << x.compression << std::endl;
     std::cout << "garbage:                    "  << x.garbage << std::endl;

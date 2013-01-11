@@ -14,121 +14,134 @@ typedef uint16_t uint16;
 typedef uint32_t uint32;
 typedef uint64_t uint64;
 
-//TODO:test
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-inline void bswap(uint16 &x){x = __builtin_bswap32(x << 16);}
-inline void bswap(uint32 &x){x = __builtin_bswap32(x);}
-inline void bswap(uint64 &x){x = __builtin_bswap64(x);}
-#else
-inline void bswap(uint16 &x){}
-inline void bswap(uint32 &x){}
-inline void bswap(uint64 &x){}
-#endif
+inline void bswap(uint16_t &x){x = __builtin_bswap32(x << 16);}
+inline void bswap(uint32_t &x){x = __builtin_bswap32(x);}
+inline void bswap(uint64_t &x){x = __builtin_bswap64(x);}
 
 
-struct palmdoc_db_header;
-struct palmdoc_header;
-struct mobi_header;
+struct st_palmdoc_db;
+struct st_palmdoc;
+struct st_mobi;
+
 struct rec_headers;
 struct image_data;
-
 #pragma pack(push)
 #pragma pack(1)
-struct palmdoc_db_header
+struct st_palmdoc_db
 {
     char   name[32];
-    uint16 flags;
-    uint16 version;
-    uint32 c_time;
-    uint32 m_time;
-    uint32 b_time;
-    uint32 mod_num;
-    uint32 app_info;
-    uint32 sort_info;
+    uint16_t flags;
+    uint16_t version;
+    uint32_t c_time;
+    uint32_t m_time;
+    uint32_t b_time;
+    uint32_t mod_num;
+    uint32_t app_info;
+    uint32_t sort_info;
     char   type[8];
-    uint32 u_id_seed;
-    uint32 next_record_list;
-    uint16 num_records;
+    //char creator[4];
+    uint32_t u_id_seed;
+    uint32_t next_record_list;
+    uint16_t num_records;
 };
 
-struct palmdoc_header
+struct st_palmdoc
 {
-    uint16 compression;
-    uint16 garbage;
-    uint32 text_length;
-    uint16 record_count;
-    uint16 record_size;
-    uint32 current_pos;
+    uint16_t compression;
+    uint16_t garbage;
+    uint32_t text_length;
+    uint16_t record_count;
+    uint16_t record_size;
+    uint32_t current_pos;
 };
 
-struct mobi_header
+struct st_mobi
 {
-  //palmdoc_header s_palmdoc_header;
+  //st_palmdoc s_st_palmdoc;
   char   id[4];
-  uint32 header_len;
-  uint32 mobi_type;
-  uint32 text_encoding;
-  uint32 u_id;
-  uint32 file_version;
-  uint32 ortographic_index;            //0xFFFFFFFF
-  uint32 inflection_index;             //0xFFFFFFFF
-  uint32 index_names;
-  uint32 index_keys;
-  uint32 extra_index0;
-  uint32 extra_index1;
-  uint32 extra_index2;
-  uint32 extra_index3;
-  uint32 extra_index4;
-  uint32 extra_index5;
-  uint32 first_nonbook_index;
-  uint32 full_name_offset;
-  uint32 full_name_length;
-  uint32 locale;
-  uint32 input_language;
-  uint32 output_language;
-  uint32 min_version;
-  uint32 first_image_index;
-  uint32 huffman_record_offset;
-  uint32 huffman_record_count;
-  uint32 huffman_table_offset;
-  uint32 huffman_table_length;
-  uint32 exth_flags;                   //TODO: bitfield
+  uint32_t header_len;
+  uint32_t mobi_type;
+  uint32_t text_encoding;
+  uint32_t u_id;
+  uint32_t file_version;
+  uint32_t ortographic_index;            //0xFFFFFFFF
+  uint32_t inflection_index;             //0xFFFFFFFF
+  uint32_t index_names;
+  uint32_t index_keys;
+  uint32_t extra_index0;
+  uint32_t extra_index1;
+  uint32_t extra_index2;
+  uint32_t extra_index3;
+  uint32_t extra_index4;
+  uint32_t extra_index5;
+  uint32_t first_nonbook_index;
+  uint32_t full_name_offset;
+  uint32_t full_name_length;
+  uint32_t locale;
+  uint32_t input_language;
+  uint32_t output_language;
+  uint32_t min_version;
+  uint32_t first_image_index;
+  uint32_t huffman_record_offset;
+  uint32_t huffman_record_count;
+  uint32_t huffman_table_offset;
+  uint32_t huffman_table_length;
+  uint32_t exth_flags;                   //TODO: bitfield
   char   garbage[32];                  //0x000000000000000000000000.
-  uint32 drm_offset;
-  uint32 drm_count;
-  uint32 drm_size;
-  uint32 drm_flags;
+  uint32_t drm_offset;
+  uint32_t drm_count;
+  uint32_t drm_size;
+  uint32_t drm_flags;
   char   garbage2[12];
-  uint16 first_content_record_number;
-  uint16 last_content_record_number;
-  uint32 unknown;                      //0x00000001
-  uint32 fcis_record_number;
-  uint32 fcis_record_count;            //0x00000001
-  uint32 flis_record_number;
-  uint32 flis_record_count;            //0x00000001
-  uint64 unk0;                         //0x0000000000000000
-  uint32 unk1;                         //0xFFFFFFFF
-  uint32 unk2;                         //0x00000000
-  uint32 unk3;                         //0xFFFFFFFF
-  uint32 unk4;                         //0xFFFFFFFF
-  uint32 extra_record_data_flags;      //tldr http://wiki.mobileread.com/wiki/MOBI#MOBI_Header
-  uint32 indx_record_offset;           //(If not 0xFFFFFFFF)The record number of
+  uint16_t first_content_record_number;
+  uint16_t last_content_record_number;
+  uint32_t unknown;                      //0x00000001
+  uint32_t fcis_record_number;
+  uint32_t fcis_record_count;            //0x00000001
+  uint32_t flis_record_number;
+  uint32_t flis_record_count;            //0x00000001
+  uint64_t unk0;                         //0x0000000000000000
+  uint32_t unk1;                         //0xFFFFFFFF
+  uint32_t unk2;                         //0x00000000
+  uint32_t unk3;                         //0xFFFFFFFF
+  uint32_t unk4;                         //0xFFFFFFFF
+  uint32_t extra_record_data_flags;      //tldr http://wiki.mobileread.com/wiki/MOBI#MOBI_Header
+  uint32_t indx_record_offset;           //(If not 0xFFFFFFFF)The record number of
                                        //the first INDX record created from an ncx file.
                                        //24B till exth
 };
 
+struct rec_headers
+{
+    uint32_t   offset;
+    uint8_t    deleted   : 1;
+    uint8_t    dirty     : 1;
+    uint8_t    busy      : 1;
+    uint8_t    secret    : 1;
+    uint8_t    category  : 4;
+    char     uniqueID[3];
+};
+
+
+
+struct image_data
+{
+    char  *data;
+    size_t len;
+    char  *type;
+};
+
+
 #pragma pack(pop)
+static_assert((sizeof(st_palmdoc_db)==PALMDOC_DB_HEADER_LEN),"st_palmdoc_db");
+static_assert((sizeof(st_palmdoc)==PALMDOC_HEADER_LEN),"st_palmdoc");
+static_assert((sizeof(st_mobi)==MOBI_HEADER_LEN),"st_mobi");
 
-static_assert((sizeof(palmdoc_db_header)==PALMDOC_DB_HEADER_LEN),"palmdoc_db_header");
-static_assert((sizeof(palmdoc_header)==PALMDOC_HEADER_LEN),"palmdoc_header");
-static_assert((sizeof(mobi_header)==MOBI_HEADER_LEN),"mobi_header");
-
-//extern struct palmdoc_db_header db_header;
+//extern struct st_palmdoc_db db_header;
 
 
-void unretardify_header(palmdoc_db_header &x);
-void unretardify_header(palmdoc_header &x);
-void unretardify_header(mobi_header &x);
-void print_header(const mobi_header &x);
-void print_header(const palmdoc_db_header &x);
-void print_header(const palmdoc_header &x);
+void unretardify_header(st_palmdoc_db &x);
+void unretardify_header(st_palmdoc &x);
+void unretardify_header(st_mobi &x);
+void print_header(const st_mobi &x);
+void print_header(const st_palmdoc &x);

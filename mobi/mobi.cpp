@@ -61,7 +61,7 @@ mobireader::mobireader(const mobireader &m)
 void mobireader::operator=(const mobireader &m)
 {
 
-    this->mobi_header_     = m.mobi_header_;
+    this->mobi_header     = m.mobi_header;
     this->header_offsets   = m.header_offsets;
 
     this->input_file_name  = m.input_file_name;
@@ -97,14 +97,14 @@ void mobireader::parse_header()
 
     uint32 header_offset;
     for(int i=0;i<db_header.num_records;i++)
-    {
+    { //TODO
         file->read((char *) &header_offset, sizeof(uint32));
         file->ignore(sizeof(uint32));
         bswap(header_offset);
         header_offsets.push_back(header_offset);
     }
     this->handler->offset(header_offsets[0]).read(pd_header);
-    this->handler->read(mobi_header_);
+    this->handler->read(mobi_header);
     this->set_compression();
     this->set_default_title();
 
@@ -137,9 +137,9 @@ void mobireader::set_default_title()
 
             this->handler->read(title_len);
 
-            char *_title = new char[title_len+1];
+            char *_title = new char[title_len];
 
-            handler->offset(header_offsets[0]+title_start)\
+            handler->offset(header_offsets[0]+title_start-1)\
                 .read(_title,title_len);
 
             this->set_title(_title);

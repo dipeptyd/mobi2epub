@@ -23,9 +23,9 @@ class mobireader{
 
     //#########################
     //####DEM HEADERS##########
-    palmdoc_db_header db_header;
-    palmdoc_header    pd_header;
-    mobi_header       mobi_header_;
+    st_palmdoc_db db_header;
+    st_palmdoc    pd_header;
+    st_mobi     mobi_header;
     std::vector<uint32>    header_offsets;
     st_c_section c_section;
 
