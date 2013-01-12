@@ -24,7 +24,7 @@ namespace epub
 class mobi2epub
 {
         
-    boost::filesystem::path base; //TODO:const
+    boost::filesystem::path base;
     mobi::mobireader m;
 
     mutable bool safe;
