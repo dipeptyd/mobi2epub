@@ -19,7 +19,6 @@ namespace epub
     extern std::string content_opf;
     extern std::string itemid;
     extern std::string itemref;
-    
 
 
 class mobi2epub

@@ -127,8 +127,8 @@ void mobi2epub::save_to_directory() const
     {
         std::string name = "chapter" + std::to_string(++i) + ".html";
 
-        boost::replace_all(x, "filepos=", "id=");
-
+        boost::replace_all(x, "filepos=", "id=");//FIXME: do it already in mobi
+                                //including figuring out the TOC+fixing links
         std::string path = (base / "/OEBPS/text/" / name).string();
         tidyh.parse(x, path);
 
@@ -175,8 +175,8 @@ void mobi2epub::directory_to_epub(std::string s)
     this->set_base(s);
 }
 
-void mobi2epub::directory_to_epub() const
-{   
+void mobi2epub::directory_to_epub() const //TODO:rewrite all of this path
+{                                         //related stuff.
     std::string filename_base = base.stem().string() + ".epub";
     std::string current_dir = boost::filesystem::current_path().string();
     std::string start_path = boost::filesystem::absolute(base).string();

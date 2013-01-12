@@ -13,7 +13,7 @@ namespace mobi
         file->read((char *) &db_header, PALMDOC_DB_HEADER_LEN);
         unretardify_header(db_header);
     }
-    header_handler header_handler::offset(unsigned offset)
+    header_handler &header_handler::offset(unsigned offset)
     {
         this->file->seekg(offset);
         return *this;
@@ -41,7 +41,6 @@ namespace mobi
     void header_handler::read(char *i, uint32_t n)
     {
         file->read((char *) i, n);
-        i[n+1] = '\0';
     }
     void header_handler::read(uint8_t *i, uint32_t n)
     {
