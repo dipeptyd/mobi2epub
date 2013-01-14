@@ -15,7 +15,11 @@ bool strcmp_is_a_worthless_pos(char x[], const char y[], int len)
 }
 
 
-
+st_c_section::st_c_section(unsigned x)
+{
+    this->size = x;
+    this->content = new uint8_t[x];
+}
 st_c_section st_c_section::operator=(st_c_section st)
 {
     this->size = st.size;
@@ -30,7 +34,8 @@ st_c_section st_c_section::operator=(st_c_section st)
 mobireader::mobireader():reader(0),file(0),title(0){}
 
 mobireader::mobireader(std::string &input_file_name)\
-:input_file_name(input_file_name),reader(0),file(0),title(0)
+:input_file_name(input_file_name),reader(0),file(0),title(0),
+    c_section(8000)
 
 {
     try{
@@ -48,9 +53,6 @@ mobireader::mobireader(std::string &input_file_name)\
         std::cout << "Invalid file type\n"<< std::endl;
         return;
     }
-
-    c_section.content = new uint8[8000];
-    c_section.size = 8000; //tako rzecze specyfikacja.
 
 }
 mobireader::mobireader(const mobireader &m)
@@ -98,9 +100,7 @@ void mobireader::parse_header()
     uint32 header_offset;
     for(int i=0;i<db_header.num_records;i++)
     { //TODO
-        file->read((char *) &header_offset, sizeof(uint32));
-        file->ignore(sizeof(uint32));
-        bswap(header_offset);
+        this->handler->read(header_offset).skip(sizeof(uint32_t));
         header_offsets.push_back(header_offset);
     }
     this->handler->offset(header_offsets[0]).read(pd_header);

@@ -17,6 +17,8 @@ struct st_c_section
     uint8 *content;
     unsigned size;
     st_c_section operator=(st_c_section st);
+    st_c_section(){};
+    st_c_section(unsigned x);
 };
 
 class mobireader{

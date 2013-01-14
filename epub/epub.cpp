@@ -39,16 +39,18 @@ std::string content_opf = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\
 ";
 
 mobi2epub::mobi2epub(const mobi::mobireader &m, bool safe, bool no_cleanup):\
-    safe(safe),no_cleanup(no_cleanup),vanilla_base(true)
+    safe(safe),no_cleanup(no_cleanup),vanilla_out(true)
 {
     this->m = m;
-    base = this->m.get_file_name().substr(0, this->m.get_file_name().find_last_of('.'));
-    base = boost::filesystem::absolute(base);
+
+    std::string stem = boost::filesystem::path(m.get_file_name()).stem().string();
+    path_out = boost::filesystem::current_path() / (stem + ".epub");
+    path_tmp = boost::filesystem::path("/tmp/mobi/" + stem);
 }
 
 void mobi2epub::gen_content_opf(std::stringstream &itemids, std::stringstream &itemrefs) const
 {
-    std::ofstream outfile(( base / "/OEBPS/content.opf").c_str());
+    std::ofstream outfile(( path_tmp / "/OEBPS/content.opf").c_str());
     outfile << boost::format(content_opf) % this->m.get_title() %itemids.str()\
                                           % itemrefs.str();
     outfile.close();
@@ -61,9 +63,9 @@ void mobi2epub::directory_structure() const
     if(!safe)
     {
 
-        if(boost::filesystem::exists(base))
+        if(boost::filesystem::exists(path_tmp))
         {
-            std::cout << boost::filesystem::absolute(base) << " directory seems to already exist." << std::endl;
+            std::cout << boost::filesystem::absolute(path_tmp) << " directory seems to already exist." << std::endl;
 
             this->cleanup();
         }
@@ -72,37 +74,38 @@ void mobi2epub::directory_structure() const
             this->safe = true;
         }
     }
-    boost::filesystem::create_directory(base);
+    boost::filesystem::create_directories(path_tmp);
     for (auto x: {"OEBPS","OEBPS/text", "META-INF"})
     {
-        boost::filesystem::create_directory(base / x);
+        boost::filesystem::create_directory(path_tmp / x);
     }
 
 
-    std::ofstream outfile((base / "META-INF/container.xml").c_str());
+    std::ofstream outfile((path_tmp / "META-INF/container.xml").c_str());
     if(!outfile.good()) { throw file_write_exception(); }
     outfile << container_xml;
     outfile.close();
 
-    outfile.open((base / "mimetype").c_str());
+    outfile.open((path_tmp / "mimetype").c_str());
     if(!outfile.good()) { throw file_write_exception(); }
     outfile << mimetype;
     outfile.close();
 
 }
 
-void mobi2epub::set_base(std::string &s)
+void mobi2epub::set_out(std::string &s)
 {
+    std::cout<< "doing stuff here" <<std::endl;
     if(boost::iends_with(s,".epub"))
         boost::erase_last(s,".epub");
 
-    this->vanilla_base = false;
-    this->base = s;
+    this->vanilla_out = false;
+    this->path_out = boost::filesystem::current_path() / s;
 }
 
 void mobi2epub::save_to_directory(std::string s)
 {
-    this->set_base(s);
+    this->set_out(s);
     this->save_to_directory();
 }
 
@@ -129,7 +132,7 @@ void mobi2epub::save_to_directory() const
 
         boost::replace_all(x, "filepos=", "id=");//FIXME: do it already in mobi
                                 //including figuring out the TOC+fixing links
-        std::string path = (base / "/OEBPS/text/" / name).string();
+        std::string path = (path_tmp / "/OEBPS/text/" / name).string();
         tidyh.parse(x, path);
 
         itemids << boost::format(itemid) % name;
@@ -149,12 +152,12 @@ void mobi2epub::cleanup() const
     {
         char c;
 
-        std::cout << "Shall we delete " << base  << " (Y/n): ";
+        std::cout << "Shall we delete " << path_tmp  << " (Y/n): ";
         std::cin >> c;
 
-        if(c == 'Y')
+        if(c != 'Y')
         {
-            std::cout << "Continue anyway?: " << base  << " (Y/n): ";
+            std::cout << "Continue anyway?: " << path_tmp  << " (Y/n): ";
             std::cin >> c; //because who would expect a sane behavior.
             if(c != 'Y'){ throw user_wants_out_exception(); }
             else
@@ -167,36 +170,30 @@ void mobi2epub::cleanup() const
                 
         }
     }
-    boost::filesystem::remove_all(base);
+    boost::filesystem::remove_all(path_tmp);
     this->safe = true;
 }
 void mobi2epub::directory_to_epub(std::string s)
 {
-    this->set_base(s);
+    this->set_out(s);
 }
 
-void mobi2epub::directory_to_epub() const //TODO:rewrite all of this path
-{                                         //related stuff.
-    std::string filename_base = base.stem().string() + ".epub";
-    std::string current_dir = boost::filesystem::current_path().string();
-    std::string start_path = boost::filesystem::absolute(base).string();
+void mobi2epub::directory_to_epub() const 
+{
 
 
-    chdir(boost::filesystem::absolute(base).c_str());
+    chdir(path_tmp.string().c_str());
 
     #ifdef _WIN32
         throw terrible_operating_system_exception();//FIXME(not the os.)
     #else
 
-        boost::filesystem::path p(current_dir);
-        p/=filename_base;
+        std::cout << "saving to " << path_out << std::endl;
 
-        std::cout << "saving to " << p.string() << std::endl;
-
-        if(system(("zip " + p.string() + " -qr *").c_str())!=0)
+        if(system(("zip " + (path_out.string()) + " -qr *").c_str())!=0)
             throw zip_exit_status_exception();
 
-        chdir(current_dir.c_str());
+        //chdir(current_dir.c_str());
 
     #endif
         this->cleanup();

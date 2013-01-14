@@ -24,12 +24,14 @@ namespace epub
 class mobi2epub
 {
         
-    boost::filesystem::path base;
+    boost::filesystem::path path_out;
+    boost::filesystem::path path_tmp;
+    std::string filename;
     mobi::mobireader m;
 
     mutable bool safe;
     mutable bool no_cleanup;
-    mutable bool vanilla_base;
+    mutable bool vanilla_out;
 
     void directory_structure() const;
     void cleanup() const;
@@ -38,7 +40,7 @@ class mobi2epub
     void operator=(mobi2epub &m);
     mobi2epub(mobi2epub &m);
 
-    void set_base(std::string &s);
+    void set_out(std::string &s);
 public:
     mobi2epub(const mobi::mobireader &m, bool safe=false, bool no_cleanup=false);
     void save_to_directory() const;
