@@ -10,7 +10,7 @@
 #include "compression/compression.hpp"
 namespace mobi
 {
-bool strcmp_is_a_worthless_pos(char x[], const char y[], int len);
+bool strcmp_is_a_worthless_pos(const char x[], const char y[], int len);
 
 struct st_c_section
 {
@@ -28,7 +28,7 @@ class mobireader{
     st_palmdoc_db db_header;
     st_palmdoc    pd_header;
     st_mobi     mobi_header;
-    std::vector<uint32>    header_offsets;
+    std::vector<uint32>    section_offsets;
     st_c_section c_section;
 
     std::string input_file_name;

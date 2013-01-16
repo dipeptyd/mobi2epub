@@ -13,7 +13,6 @@ int main(int argc, char **argv)
     {
         std::cout << c.imdoingitwrong() << std::endl;
         return 1;
-
     }
     std::string filename = vm["input-file"].
         as <std::vector <std::string> >().front();

@@ -27,8 +27,6 @@ struct st_palmdoc_db;
 struct st_palmdoc;
 struct st_mobi;
 
-struct rec_headers;
-struct image_data;
 #pragma pack(push)
 #pragma pack(1)
 struct st_palmdoc_db
@@ -61,7 +59,6 @@ struct st_palmdoc
 
 struct st_mobi
 {
-  //st_palmdoc s_st_palmdoc;
   char   id[4];
   uint32_t header_len;
   uint32_t mobi_type;
@@ -115,37 +112,12 @@ struct st_mobi
                                        //24B till exth
 };
 
-struct rec_headers
-{
-    uint32_t   offset;
-    uint8_t    deleted   : 1;
-    uint8_t    dirty     : 1;
-    uint8_t    busy      : 1;
-    uint8_t    secret    : 1;
-    uint8_t    category  : 4;
-    char     uniqueID[3];
-};
-
-
-
-struct image_data
-{
-    char  *data;
-    size_t len;
-    char  *type;
-};
-
 
 #pragma pack(pop)
 static_assert((sizeof(st_palmdoc_db)==PALMDOC_DB_HEADER_LEN),"st_palmdoc_db");
 static_assert((sizeof(st_palmdoc)==PALMDOC_HEADER_LEN),"st_palmdoc");
 static_assert((sizeof(st_mobi)==MOBI_HEADER_LEN),"st_mobi");
 
-//extern struct st_palmdoc_db db_header;
-
-
 void unretardify_header(st_palmdoc_db &x);
 void unretardify_header(st_palmdoc &x);
 void unretardify_header(st_mobi &x);
-void print_header(const st_mobi &x);
-void print_header(const st_palmdoc &x);

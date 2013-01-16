@@ -1,7 +1,7 @@
 #include "compression.hpp"
 namespace mobi
 {
-    std::string pd_compression::output_raw()
+    std::string compression::output_raw()
 {
     return destination;
 }
@@ -68,8 +68,8 @@ void no_compression::uncompress(uint8_t *src, size_t srcLen)
 }
 
 
-std::string no_compression::output_raw()
-{
-    return this->destination;
-}
+//std::string no_compression::output_raw()
+//{
+    //return this->destination;
+//}
 }

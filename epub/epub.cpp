@@ -52,6 +52,7 @@ void mobi2epub::gen_content_opf(std::stringstream &itemids, std::stringstream &i
 {
     std::ofstream outfile(( path_tmp / "/OEBPS/content.opf").c_str());
     outfile << boost::format(content_opf) % this->m.get_title() %itemids.str()\
+
                                           % itemrefs.str();
     outfile.close();
 }
@@ -95,12 +96,13 @@ void mobi2epub::directory_structure() const
 
 void mobi2epub::set_out(std::string &s)
 {
-    std::cout<< "doing stuff here" <<std::endl;
-    if(boost::iends_with(s,".epub"))
-        boost::erase_last(s,".epub");
+     if(boost::iequals(s, "."))
+        {
+            return;
+        }
 
     this->vanilla_out = false;
-    this->path_out = boost::filesystem::current_path() / s;
+    this->path_out = boost::filesystem::absolute(s);
 }
 
 void mobi2epub::save_to_directory(std::string s)
@@ -148,7 +150,7 @@ void mobi2epub::cleanup() const
     {
         return;
     }
-    if(not safe)
+    if(not safe and boost::filesystem::exists(path_tmp))
     {
         char c;
 
