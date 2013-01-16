@@ -4,7 +4,7 @@ namespace epub
 {
     namespace html
     {
-#include <tidy.h>
+#include <tidy.h> //because C cannot into namespaces.
     class tidyhtml
     {
         TidyDoc tdoc;

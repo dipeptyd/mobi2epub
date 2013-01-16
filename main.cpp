@@ -2,9 +2,6 @@
 int main(int argc, char **argv)
 {
 
-    //optparse::Values options;
-    //try
-    //{
     po::variables_map vm;
     try {
     vm = op(argc, argv);
@@ -17,10 +14,11 @@ int main(int argc, char **argv)
     std::string filename = vm["input-file"].
         as <std::vector <std::string> >().front();
 
+
     std::string output;
     if(vm.count("output-file"))
     {
-            output = vm["output-file"].
+        output = vm["output-file"].
             as <std::vector <std::string> >().front();
     }
 

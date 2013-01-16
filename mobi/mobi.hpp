@@ -40,6 +40,7 @@ class mobireader{
     header_handler *handler;
     char *title;
 
+    void load_file(std::string &input_file_name);
     void parse_header();
     void set_compression();
 
@@ -61,7 +62,6 @@ public:
     std::string get_file_name() const {return input_file_name;}
 
 
-    void load_file(std::string &input_file_name);
     void operator=(const mobireader &m);
 
 };

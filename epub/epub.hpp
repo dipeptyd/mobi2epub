@@ -26,7 +26,6 @@ class mobi2epub
         
     boost::filesystem::path path_out;
     boost::filesystem::path path_tmp;
-    std::string filename;
     mobi::mobireader m;
 
     mutable bool safe;
