@@ -1,0 +1,116 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter B
+  \item bswap (C++ function), \hyperpage{7}
+
+  \indexspace
+  \bigletter C
+  \item compression::output\_raw (C++ function), \hyperpage{6}
+  \item compression::uncompress (C++ function), \hyperpage{6}
+  \item container\_xml (C++ member), \hyperpage{11}
+  \item content\_opf (C++ member), \hyperpage{11}
+
+  \indexspace
+  \bigletter D
+  \item destination (C++ member), \hyperpage{6}
+
+  \indexspace
+  \bigletter E
+  \item epub::file\_write\_exception (C++ class), \hyperpage{15}
+  \item epub::mobi2epub (C++ class), \hyperpage{12}
+  \item epub::path\_changed\_exception (C++ class), \hyperpage{15}
+  \item epub::terrible\_operating\_system\_exception (C++ class), \hyperpage{15}
+  \item epub::user\_wants\_out\_exception (C++ class), \hyperpage{15}
+  \item epub::zip\_exit\_status\_exception (C++ class), \hyperpage{15}
+
+  \indexspace
+  \bigletter H
+  \item header\_handler (C++ class), \hyperpage{5}
+  \item header\_handler (C++ function), \hyperpage{5}
+  \item header\_handler::file (C++ member), \hyperpage{5}
+  \item header\_handler::offset (C++ function), \hyperpage{5}
+  \item header\_handler::read (C++ function), \hyperpage{5}
+  \item header\_handler::skip (C++ function), \hyperpage{5}
+
+  \indexspace
+  \bigletter I
+  \item itemid (C++ member), \hyperpage{11}
+  \item itemref (C++ member), \hyperpage{11}
+
+  \indexspace
+  \bigletter M
+  \item m (C++ member), \hyperpage{12}
+  \item mimetype (C++ member), \hyperpage{11}
+  \item mobi2epub::cleanup (C++ function), \hyperpage{12}
+  \item mobi2epub::directory\_structure (C++ function), \hyperpage{12}
+  \item mobi2epub::directory\_to\_epub (C++ function), \hyperpage{13}
+  \item mobi2epub::gen\_content\_opf (C++ function), \hyperpage{12}
+  \item mobi2epub::mobi2epub (C++ function), \hyperpage{13}
+  \item mobi2epub::operator= (C++ function), \hyperpage{13}
+  \item mobi2epub::save\_to\_directory (C++ function), \hyperpage{13}
+  \item mobi2epub::set\_out (C++ function), \hyperpage{13}
+  \item mobi::compression (C++ class), \hyperpage{6}
+  \item mobi::hd\_compression (C++ class), \hyperpage{7}
+  \item mobi::header\_out\_of\_range\_exception (C++ class), \hyperpage{15}
+  \item mobi::invalid\_compression\_type\_exception (C++ class), \hyperpage{15}
+  \item mobi::invalid\_file\_exception (C++ class), \hyperpage{15}
+  \item mobi::mobireader (C++ class), \hyperpage{3}
+  \item mobi::no\_compression (C++ class), \hyperpage{7}
+  \item mobi::no\_such\_file\_exception (C++ class), \hyperpage{15}
+  \item mobi::not\_palmdoc\_compression\_exception (C++ class), \hyperpage{15}
+  \item mobi::pd\_compression (C++ class), \hyperpage{6}
+  \item mobi::st\_c\_section (C++ class), \hyperpage{3}
+  \item mobi::strcmp\_is\_a\_worthless\_pos (C++ function), \hyperpage{7}
+  \item mobi::unsupported\_compressiontype\_exception (C++ class), \hyperpage{15}
+  \item mobireader::\textasciitilde{}mobireader (C++ function), \hyperpage{4}
+  \item mobireader::c\_section (C++ member), \hyperpage{4}
+  \item mobireader::db\_header (C++ member), \hyperpage{4}
+  \item mobireader::file (C++ member), \hyperpage{4}
+  \item mobireader::get\_file\_name (C++ function), \hyperpage{5}
+  \item mobireader::get\_html (C++ function), \hyperpage{5}
+  \item mobireader::get\_section\_uncompressed (C++ function), \hyperpage{4}
+  \item mobireader::get\_title (C++ function), \hyperpage{5}
+  \item mobireader::handler (C++ member), \hyperpage{4}
+  \item mobireader::input\_file\_name (C++ member), \hyperpage{4}
+  \item mobireader::load\_file (C++ function), \hyperpage{5}
+  \item mobireader::mobi\_header (C++ member), \hyperpage{4}
+  \item mobireader::mobireader (C++ function), \hyperpage{4}
+  \item mobireader::operator= (C++ function), \hyperpage{5}
+  \item mobireader::pd\_header (C++ member), \hyperpage{4}
+  \item mobireader::reader (C++ member), \hyperpage{4}
+  \item mobireader::section\_offsets (C++ member), \hyperpage{4}
+  \item mobireader::set\_title (C++ function), \hyperpage{5}
+  \item mobireader::title (C++ member), \hyperpage{4}
+
+  \indexspace
+  \bigletter N
+  \item no\_cleanup (C++ member), \hyperpage{12}
+
+  \indexspace
+  \bigletter P
+  \item parse\_header (C++ function), \hyperpage{4}
+  \item path\_out (C++ member), \hyperpage{12}
+  \item path\_tmp (C++ member), \hyperpage{12}
+
+  \indexspace
+  \bigletter S
+  \item safe (C++ member), \hyperpage{12}
+  \item set\_compression (C++ function), \hyperpage{4}
+  \item set\_default\_title (C++ function), \hyperpage{4}
+  \item st\_c\_section (C++ function), \hyperpage{3}
+  \item st\_c\_section::content (C++ member), \hyperpage{3}
+  \item st\_c\_section::size (C++ member), \hyperpage{3}
+  \item st\_mobi (C++ type), \hyperpage{8}
+  \item st\_palmdoc (C++ type), \hyperpage{8}
+  \item st\_palmdoc\_db (C++ type), \hyperpage{7}
+
+  \indexspace
+  \bigletter U
+  \item unretardify\_header (C++ function), \hyperpage{7}
+
+  \indexspace
+  \bigletter V
+  \item vanilla\_out (C++ member), \hyperpage{12}
+
+\end{theindex}

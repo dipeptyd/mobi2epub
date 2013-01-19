@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mobi::compression &mdash; mobi2epub 0.01 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="mobi2epub 0.01 documentation" href="index.html" />
+    <link rel="up" title="mobi::" href="mobi.html" />
+    <link rel="next" title="separate mobi::functions" href="functions.html" />
+    <link rel="prev" title="mobi::header_handler" href="header_handler.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="functions.html" title="separate mobi::functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="header_handler.html" title="mobi::header_handler"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
+          <li><a href="mobi.html" accesskey="U">mobi::</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mobi-compression">
+<h1>mobi::compression<a class="headerlink" href="#mobi-compression" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mobi::compression">
+<em class="property">class </em><tt class="descclassname">mobi::</tt><tt class="descname">compression</tt><a class="headerlink" href="#mobi::compression" title="Permalink to this definition">¶</a></dt>
+<dd><p>abstract class, providing base for <a class="reference internal" href="#mobi::pd_compression" title="mobi::pd_compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">pd_compression</span></tt></a>, <a class="reference internal" href="#mobi::no_compression" title="mobi::no_compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">no_compression</span></tt></a>
+and <a class="reference internal" href="#mobi::hd_compression" title="mobi::hd_compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">hd_compression</span></tt></a></p>
+</dd></dl>
+
+<div class="section" id="compression-variables">
+<h2>compression variables<a class="headerlink" href="#compression-variables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="private">
+<h3>private<a class="headerlink" href="#private" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="member">
+<dt id="destination__ss">
+std::string <tt class="descname">destination</tt><a class="headerlink" href="#destination__ss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="compression-methods">
+<h2>compression methods<a class="headerlink" href="#compression-methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="public">
+<h3>public:<a class="headerlink" href="#public" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="compression::uncompress__uint8_tP.s">
+void <tt class="descclassname">compression::</tt><tt class="descname">uncompress</tt><big>(</big>uint8_t* <em>src</em>, size_t <em>srcLen</em><big>)</big><tt class="descclassname"> = 0</tt><a class="headerlink" href="#compression::uncompress__uint8_tP.s" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">pure virtual function</p>
+</div>
+<p>Should be overloaded with:</p>
+<div class="highlight-python"><pre>if(!this-&gt;destination.empty())
+    this-&gt;destination.clear();
+(decompression algorithm that appends stuff to this-&gt;destination)
+return;</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compression::output_raw">
+std::string <tt class="descclassname">compression::</tt><tt class="descname">output_raw</tt><big>(</big><big>)</big><a class="headerlink" href="#compression::output_raw" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">virtual function</p>
+</div>
+<p>Usually should just:</p>
+<div class="highlight-python"><pre>return this-&gt;destination;</pre>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="mobi::pd_compression">
+<em class="property">class </em><tt class="descclassname">mobi::</tt><tt class="descname">pd_compression</tt><a class="headerlink" href="#mobi::pd_compression" title="Permalink to this definition">¶</a></dt>
+<dd><p>inherits from <a class="reference internal" href="#mobi::compression" title="mobi::compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">compression</span></tt></a></p>
+<p>Uses PalmDoc algorithm:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Read a byte from the compressed stream. If the byte is</li>
+<li>0x00: &#8220;1 literal&#8221; copy that byte unmodified to the decompressed stream.</li>
+<li>0x09 to 0x7f: &#8220;1 literal&#8221; copy that byte unmodified to the decompressed stream.</li>
+<li>0x01 to 0x08: &#8220;literals&#8221;: the byte is interpreted as a count from 1 to 8, and that many literals are copied unmodified from the compressed stream to the decompressed stream.</li>
+<li>0x80 to 0xbf: &#8220;length, distance&#8221; pair: the 2 leftmost bits of this byte (&#8216;10&#8217;) are discarded, and the following 6 bits are combined with the 8 bits of the next byte to make a 14 bit &#8220;distance, length&#8221; item. Those 14 bits are broken into 11 bits of distance backwards from the current location in the uncompressed text, and 3 bits of length to copy from that point (copying n+3 bytes, 3 to 10 bytes).</li>
+<li>0xc0 to 0xff: &#8220;byte pair&#8221;: this byte is decoded into 2 characters: a space character, and a letter formed from this byte XORed with 0x80.</li>
+<li>Repeat from the beginning until there is no more bytes in the compressed f</li>
+</ol>
+</div></blockquote>
+<p>Except it doesn&#8217;t copy 0x00. Because who in the right mind would want to do that?</p>
+<p>throws <a class="reference internal" href="exceptions.html#mobi::not_palmdoc_compression_exception" title="mobi::not_palmdoc_compression_exception"><tt class="xref cpp cpp-class docutils literal"><span class="pre">mobi::not_palmdoc_compression_exception</span></tt></a></p>
+<p>from check at stage 5.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mobi::no_compression">
+<em class="property">class </em><tt class="descclassname">mobi::</tt><tt class="descname">no_compression</tt><a class="headerlink" href="#mobi::no_compression" title="Permalink to this definition">¶</a></dt>
+<dd><p>inherits from <a class="reference internal" href="#mobi::compression" title="mobi::compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">compression</span></tt></a></p>
+<p>It&#8217;s just:</p>
+<div class="highlight-python"><pre>if(!this-&gt;destination.empty())
+    this-&gt;destination.clear();
+this-&gt;destination.append((char *)src, srcLen);</pre>
+</div>
+<p>in <a class="reference internal" href="#compression::uncompress__uint8_tP.s" title="compression::uncompress"><tt class="xref cpp cpp-func docutils literal"><span class="pre">compression::uncompress()</span></tt></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mobi::hd_compression">
+<em class="property">class </em><tt class="descclassname">mobi::</tt><tt class="descname">hd_compression</tt><a class="headerlink" href="#mobi::hd_compression" title="Permalink to this definition">¶</a></dt>
+<dd><p>inherits from <a class="reference internal" href="#mobi::compression" title="mobi::compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">compression</span></tt></a></p>
+<p>currently not implemented, because none of the books i&#8217;ve found use it.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mobi::compression</a><ul>
+<li><a class="reference internal" href="#compression-variables">compression variables</a><ul>
+<li><a class="reference internal" href="#private">private</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compression-methods">compression methods</a><ul>
+<li><a class="reference internal" href="#public">public:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="header_handler.html"
+                        title="previous chapter">mobi::header_handler</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="functions.html"
+                        title="next chapter">separate mobi::functions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/compression.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="functions.html" title="separate mobi::functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="header_handler.html" title="mobi::header_handler"
+             >previous</a> |</li>
+        <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
+          <li><a href="mobi.html" >mobi::</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, JA.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

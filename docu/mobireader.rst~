@@ -1,0 +1,137 @@
+-------------------------------
+mobi::mobireader
+-------------------------------
+
+
+mobireader variables
+-------------------------------
+
+""""""""""""""""
+private
+""""""""""""""""
+
+
+    .. cpp:member:: st_palmdoc_db  db_header
+
+    .. cpp:member:: st_palmdoc    pd_header
+
+    .. cpp:member:: st_mobi  mobi_header
+
+    .. cpp:member:: vector  section_offsets
+
+        byte offset of every data section in file
+
+
+    .. cpp:member:: st_c_section  c_section
+
+
+    .. cpp:member:: string input_file_name
+
+        name of the file, because ifstream is too cool to keep that.
+
+
+    .. cpp:member:: ifstream*  file
+
+        All it should do is get passed to the :cpp:member:`handler`
+
+    .. cpp:member:: compression*  reader
+
+        Pointer to new instance of :cpp:class:`compression`
+
+
+
+    .. cpp:member:: header_handler*  handler
+
+        pointer to new instance of :cpp:class:`header_handler`
+
+    .. cpp:member:: char*  title
+
+        title of the book
+
+
+mobireader methods
+-------------------------------
+
+""""""""""""""""""""""""""
+private
+""""""""""""""""""""""""""
+    
+    .. cpp:function:: void parse_header()
+
+        Loads up headers and section offsets from file
+
+        throws 
+
+    .. cpp:function:: void parse_header()
+
+        loads up headers structures and section vector
+
+        if :cpp:member:`db_header`   type doesn't equal BOOKMOBI, throws 
+        invalid_file_exception
+
+
+    .. cpp:function:: void set_compression()
+
+        decides which one of the mobi::compression classes should \*reader point to
+
+        throws unsupported_compressiontype_exception for dictionary compression.
+        mainly because i haven't found it in any of my books.
+
+    .. cpp:function:: std::string get_section_uncompressed(unsigned s) const
+
+        Handles uncompressing and returning section from a valid range of 
+        section_offsets vector
+
+        header_out_of_range_exception
+
+
+
+"""""""""""""""""""""
+public:
+"""""""""""""""""""""
+
+    .. cpp:function:: mobireader(std::string &input_file_name)
+
+
+    .. cpp:function:: mobireader(const mobireader &m)
+
+
+    .. cpp:function:: mobireader()
+
+
+    .. cpp:function:: ~mobireader()
+
+
+    .. cpp:function:: void set_default_title()
+
+        reads the default title from file
+
+
+    .. cpp:function:: char* set_title() const
+
+
+    .. cpp:function:: char* get_title() const
+
+        returns current book title.
+
+
+    .. cpp:function:: std::string get_html() const
+
+        iterates \*reader over sections and returns html-like text.
+
+
+    .. cpp:function:: std::string get_file_name() const
+
+        returns file name from input_file_name
+
+
+    .. cpp:function:: void load_file(std::string &input_file_name)
+
+        loads file from string and sets up \*handler and \*file pointers.
+
+
+    .. cpp:function:: void operator=(const mobireader &m)
+
+        obviously copies mobireader class onto another instance.
+        calls load_file() to check if the file is still ok.
+

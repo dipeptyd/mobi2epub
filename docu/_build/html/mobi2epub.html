@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>epub:: &mdash; mobi2epub 0.01 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="mobi2epub 0.01 documentation" href="index.html" />
+    <link rel="up" title="epub::" href="epub.html" />
+    <link rel="prev" title="epub::" href="epub.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="epub.html" title="epub::"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
+          <li><a href="epub.html" accesskey="U">epub::</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="epub">
+<h1>epub::<a class="headerlink" href="#epub" title="Permalink to this headline">¶</a></h1>
+<p>It&#8217;s a namespace for classes reading epub, creating epub and converting TO epub</p>
+<dl class="member">
+<dt id="container_xml__ss">
+std::string <tt class="descname">container_xml</tt><a class="headerlink" href="#container_xml__ss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="mimetype__ss">
+std::string <tt class="descname">mimetype</tt><a class="headerlink" href="#mimetype__ss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="content_opf__ss">
+std::string <tt class="descname">content_opf</tt><a class="headerlink" href="#content_opf__ss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="itemid__ss">
+std::string <tt class="descname">itemid</tt><a class="headerlink" href="#itemid__ss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="itemref__ss">
+std::string <tt class="descname">itemref</tt><a class="headerlink" href="#itemref__ss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="epub-mobi2epub">
+<h2>epub::mobi2epub<a class="headerlink" href="#epub-mobi2epub" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="epub::mobi2epub">
+<em class="property">class </em><tt class="descclassname">epub::</tt><tt class="descname">mobi2epub</tt><a class="headerlink" href="#epub::mobi2epub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class converting mobi files to epub and because of lame
+.zip support - writes them on the disk immediately.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mobi2epub-variables">
+<h2>mobi2epub variables<a class="headerlink" href="#mobi2epub-variables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="private">
+<h3>private<a class="headerlink" href="#private" title="Permalink to this headline">¶</a></h3>
+<dl class="member">
+<dt id="path_out__boost::filesystem::path">
+boost::filesystem::path <tt class="descname">path_out</tt><a class="headerlink" href="#path_out__boost::filesystem::path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="path_tmp__boost::filesystem::path">
+boost::filesystem::path <tt class="descname">path_tmp</tt><a class="headerlink" href="#path_tmp__boost::filesystem::path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="filename__ss">
+std::string <tt class="descname">filename</tt><a class="headerlink" href="#filename__ss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="m__mobi::mobireader">
+mobi::mobireader <tt class="descname">m</tt><a class="headerlink" href="#m__mobi::mobireader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="safe__mutable-b">
+mutable bool <tt class="descname">safe</tt><a class="headerlink" href="#safe__mutable-b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="no_cleanup__mutable-b">
+mutable bool <tt class="descname">no_cleanup</tt><a class="headerlink" href="#no_cleanup__mutable-b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="vanilla_out__mutable-b">
+mutable bool <tt class="descname">vanilla_out</tt><a class="headerlink" href="#vanilla_out__mutable-b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="mobi2epub-methods">
+<h2>mobi2epub methods<a class="headerlink" href="#mobi2epub-methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>private<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="public">
+<h3>public<a class="headerlink" href="#public" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">epub::</a><ul>
+<li><a class="reference internal" href="#epub-mobi2epub">epub::mobi2epub</a></li>
+<li><a class="reference internal" href="#mobi2epub-variables">mobi2epub variables</a><ul>
+<li><a class="reference internal" href="#private">private</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mobi2epub-methods">mobi2epub methods</a><ul>
+<li><a class="reference internal" href="#id1">private</a></li>
+<li><a class="reference internal" href="#public">public</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="epub.html"
+                        title="previous chapter">epub::</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/mobi2epub.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="epub.html" title="epub::"
+             >previous</a> |</li>
+        <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
+          <li><a href="epub.html" >epub::</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, JA.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

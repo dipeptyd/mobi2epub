@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mobi::header_handler &mdash; mobi2epub 0.01 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.01',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="mobi2epub 0.01 documentation" href="index.html" />
+    <link rel="up" title="mobi::" href="mobi.html" />
+    <link rel="next" title="mobi::compression" href="compression.html" />
+    <link rel="prev" title="mobi::mobireader" href="mobireader.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="compression.html" title="mobi::compression"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobireader.html" title="mobi::mobireader"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
+          <li><a href="mobi.html" accesskey="U">mobi::</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mobi-header-handler">
+<h1>mobi::header_handler<a class="headerlink" href="#mobi-header-handler" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="header_handler">
+<em class="property">class </em><tt class="descname">header_handler</tt><a class="headerlink" href="#header_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles reading data from the .mobi files, so the <a class="reference internal" href="mobireader.html#mobi::mobireader" title="mobi::mobireader"><tt class="xref cpp cpp-class docutils literal"><span class="pre">mobi::mobireader</span></tt></a>
+methods can be a bit cleaner.</p>
+</dd></dl>
+
+<div class="section" id="header-handler-variables">
+<h2>header_handler variables<a class="headerlink" href="#header-handler-variables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="private">
+<h3>private<a class="headerlink" href="#private" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="header-handler-methods">
+<h2>header_handler methods<a class="headerlink" href="#header-handler-methods" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl class="member">
+<dt id="header_handler::file__std::ifstreamP">
+std::ifstream* <tt class="descclassname">header_handler::</tt><tt class="descname">file</tt><a class="headerlink" href="#header_handler::file__std::ifstreamP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div></blockquote>
+<div class="section" id="public">
+<h3>public:<a class="headerlink" href="#public" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="header_handler__std::ifstreamP">
+ <tt class="descname">header_handler</tt><big>(</big>std::ifstream* <em>file</em><big>)</big><a class="headerlink" href="#header_handler__std::ifstreamP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a> pointer to
+<a class="reference internal" href="mobireader.html#mobireader::file__ifstreamP" title="mobireader::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">mobireader::file</span></tt></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="header_handler::offset__unsigned-i">
+header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="descname">offset</tt><big>(</big>unsigned int <em>offset</em><big>)</big><a class="headerlink" href="#header_handler::offset__unsigned-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets offset in <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a>
+returns reference to self</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="header_handler::skip__unsigned-i">
+header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="descname">skip</tt><big>(</big>unsigned int <em>skip</em><big>)</big><a class="headerlink" href="#header_handler::skip__unsigned-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skips n bytes in <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a>
+returns reference to self</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="header_handler::read__typeR">
+header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="descname">read</tt><big>(</big>type&amp; <em>i</em><big>)</big><a class="headerlink" href="#header_handler::read__typeR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads sizeof i from <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a> and saves it to i</p>
+<p>returns reference to <a class="reference internal" href="#header_handler" title="header_handler"><tt class="xref cpp cpp-class docutils literal"><span class="pre">header_handler</span></tt></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="header_handler::read__typeR.unsigned-i">
+header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="descname">read</tt><big>(</big>type&amp; <em>i</em>, unsigned int <em>n</em><big>)</big><a class="headerlink" href="#header_handler::read__typeR.unsigned-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads n times sizeof i from <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a> and saves it to i</p>
+<p>Should be overloaded for every necessary data type</p>
+<p>or just use templates, which i won&#8217;t implement, because there&#8217;s already
+too much syntax noise as it is, without the chevron brackets.</p>
+<p>returns reference to self</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mobi::header_handler</a><ul>
+<li><a class="reference internal" href="#header-handler-variables">header_handler variables</a><ul>
+<li><a class="reference internal" href="#private">private</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#header-handler-methods">header_handler methods</a><ul>
+<li><a class="reference internal" href="#public">public:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobireader.html"
+                        title="previous chapter">mobi::mobireader</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="compression.html"
+                        title="next chapter">mobi::compression</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/header_handler.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="compression.html" title="mobi::compression"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobireader.html" title="mobi::mobireader"
+             >previous</a> |</li>
+        <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
+          <li><a href="mobi.html" >mobi::</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, JA.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
