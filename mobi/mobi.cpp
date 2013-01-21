@@ -33,13 +33,13 @@ st_c_section st_c_section::operator=(st_c_section st)
 
 mobireader::mobireader():reader(0),file(0),title(0){}
 
-mobireader::mobireader(std::string &input_file_name)\
+mobireader::mobireader(std::string const &input_file_name)\
 :c_section(8000),input_file_name(input_file_name),reader(0),file(0)\
     ,title(0)
 
 {
     try{
-    this->load_file(input_file_name);
+    this->load_file(this->input_file_name);
     }
     catch(no_such_file_exception){
         std::cout << "No such file\n";
@@ -149,7 +149,7 @@ void mobireader::set_default_title()
         }
 
 
-void mobireader::load_file(std::string &input_file_name)
+void mobireader::load_file(std::string const &input_file_name)
 {
     this->file = new std::ifstream(input_file_name.c_str());
     if(!file->good())

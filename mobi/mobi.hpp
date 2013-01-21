@@ -40,13 +40,13 @@ class mobireader{
     header_handler *handler;
     char *title;
 
-    void load_file(std::string &input_file_name);
+    void load_file(std::string const &input_file_name);
     void parse_header();
     void set_compression();
 
     std::string get_section_uncompressed(unsigned sec) const;
 public:
-    mobireader(std::string &input_file_name);
+    mobireader(std::string const &input_file_name);
     mobireader(const mobireader &m);
     mobireader();
     ~mobireader();

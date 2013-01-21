@@ -58,7 +58,7 @@
 <dl class="class">
 <dt id="mobi::mobireader">
 <em class="property">class </em><tt class="descclassname">mobi::</tt><tt class="descname">mobireader</tt><a class="headerlink" href="#mobi::mobireader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Opens .mobi files and reads as</p>
+<dd><p>Class for handling .mobi files</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span>  <span class="n">foo</span> <span class="o">=</span> <span class="s">&quot;foo.mobi&quot;</span><span class="p">;</span>
 
 <span class="n">mobi</span><span class="o">::</span><span class="n">mobireader</span> <span class="n">bar</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
@@ -89,9 +89,9 @@
 <dd></dd></dl>
 
 <dl class="member">
-<dt id="mobireader::section_offsets__vector">
-vector <tt class="descclassname">mobireader::</tt><tt class="descname">section_offsets</tt><a class="headerlink" href="#mobireader::section_offsets__vector" title="Permalink to this definition">¶</a></dt>
-<dd><p>byte offset of every data section in file</p>
+<dt id="mobireader::section_offsets__vector:uint32_t:">
+vector&lt;uint32_t&gt; <tt class="descclassname">mobireader::</tt><tt class="descname">section_offsets</tt><a class="headerlink" href="#mobireader::section_offsets__vector:uint32_t:" title="Permalink to this definition">¶</a></dt>
+<dd><p>byte offset of every data section in the file</p>
 </dd></dl>
 
 <dl class="member">
@@ -102,7 +102,7 @@ st_c_section <tt class="descclassname">mobireader::</tt><tt class="descname">c_s
 <dl class="member">
 <dt id="mobireader::input_file_name__string">
 string <tt class="descclassname">mobireader::</tt><tt class="descname">input_file_name</tt><a class="headerlink" href="#mobireader::input_file_name__string" title="Permalink to this definition">¶</a></dt>
-<dd><p>name of the file, because ifstream is too cool to keep that.</p>
+<dd><p>name of the file, because ifstream is too cool to keep that by itself.</p>
 </dd></dl>
 
 <dl class="member">
@@ -114,13 +114,13 @@ ifstream* <tt class="descclassname">mobireader::</tt><tt class="descname">file</
 <dl class="member">
 <dt id="mobireader::reader__compressionP">
 compression* <tt class="descclassname">mobireader::</tt><tt class="descname">reader</tt><a class="headerlink" href="#mobireader::reader__compressionP" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pointer to new instance of <a class="reference internal" href="compression.html#mobi::compression" title="mobi::compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">mobi::compression</span></tt></a></p>
+<dd><p>Pointer to a dynamic instance of <a class="reference internal" href="compression.html#mobi::compression" title="mobi::compression"><tt class="xref cpp cpp-class docutils literal"><span class="pre">mobi::compression</span></tt></a></p>
 </dd></dl>
 
 <dl class="member">
 <dt id="mobireader::handler__header_handlerP">
 header_handler* <tt class="descclassname">mobireader::</tt><tt class="descname">handler</tt><a class="headerlink" href="#mobireader::handler__header_handlerP" title="Permalink to this definition">¶</a></dt>
-<dd><p>pointer to new instance of <a class="reference internal" href="header_handler.html#header_handler" title="header_handler"><tt class="xref cpp cpp-class docutils literal"><span class="pre">header_handler</span></tt></a></p>
+<dd><p>pointer to dynamic instance of <a class="reference internal" href="header_handler.html#header_handler" title="header_handler"><tt class="xref cpp cpp-class docutils literal"><span class="pre">header_handler</span></tt></a></p>
 </dd></dl>
 
 <dl class="member">
@@ -128,7 +128,7 @@ header_handler* <tt class="descclassname">mobireader::</tt><tt class="descname">
 char* <tt class="descclassname">mobireader::</tt><tt class="descname">title</tt><a class="headerlink" href="#mobireader::title__cP" title="Permalink to this definition">¶</a></dt>
 <dd><p>title of the book
 set by
-<a class="reference internal" href="#mobireader::set_title__cCPC" title="mobireader::set_title"><tt class="xref cpp cpp-func docutils literal"><span class="pre">set_title()</span></tt></a> and <a class="reference internal" href="#set_default_title" title="set_default_title"><tt class="xref cpp cpp-func docutils literal"><span class="pre">set_default_title()</span></tt></a> methods</p>
+<a class="reference internal" href="#mobireader::set_title__cCP" title="mobireader::set_title"><tt class="xref cpp cpp-func docutils literal"><span class="pre">set_title()</span></tt></a> and <a class="reference internal" href="#set_default_title" title="set_default_title"><tt class="xref cpp cpp-func docutils literal"><span class="pre">set_default_title()</span></tt></a> methods</p>
 </dd></dl>
 
 </div></blockquote>
@@ -142,7 +142,7 @@ set by
 <div><dl class="function">
 <dt id="parse_header">
 mobireader::void <tt class="descname">parse_header</tt><big>(</big><big>)</big><a class="headerlink" href="#parse_header" title="Permalink to this definition">¶</a></dt>
-<dd><p>loads up headers structures and section vector</p>
+<dd><p>loads up headers structures and fills the <a class="reference internal" href="#mobireader::section_offsets__vector:uint32_t:" title="mobireader::section_offsets"><tt class="xref cpp cpp-member docutils literal"><span class="pre">mobireader::section_offsets</span></tt></a> vector</p>
 <p>if <a class="reference internal" href="#mobireader::db_header__st_palmdoc_db" title="mobireader::db_header"><tt class="xref cpp cpp-member docutils literal"><span class="pre">mobireader::db_header</span></tt></a>   type doesn&#8217;t equal BOOKMOBI, throws
 <a class="reference internal" href="exceptions.html#mobi::invalid_file_exception" title="mobi::invalid_file_exception"><tt class="xref cpp cpp-class docutils literal"><span class="pre">mobi::invalid_file_exception</span></tt></a></p>
 </dd></dl>
@@ -159,14 +159,15 @@ mainly because i haven&#8217;t found it in any of my books.</p>
 <dt id="mobireader::get_section_uncompressed__unsigned-iC">
 std::string <tt class="descclassname">mobireader::</tt><tt class="descname">get_section_uncompressed</tt><big>(</big>unsigned int <em>s</em><big>)</big><tt class="descclassname"> const</tt><a class="headerlink" href="#mobireader::get_section_uncompressed__unsigned-iC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handles uncompressing and returning section from a valid range of
-section_offsets vector</p>
-<p>header_out_of_range_exception</p>
+<a class="reference internal" href="#mobireader::section_offsets__vector:uint32_t:" title="mobireader::section_offsets"><tt class="xref cpp cpp-member docutils literal"><span class="pre">mobireader::section_offsets</span></tt></a> vector</p>
+<p>throws <a class="reference internal" href="exceptions.html#mobi::header_out_of_range_exception" title="mobi::header_out_of_range_exception"><tt class="xref cpp cpp-class docutils literal"><span class="pre">mobi::header_out_of_range_exception</span></tt></a>
+when... the header is out of range</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="mobireader::load_file__ssR">
 void <tt class="descclassname">mobireader::</tt><tt class="descname">load_file</tt><big>(</big>std::string&amp; <em>input_file_name</em><big>)</big><a class="headerlink" href="#mobireader::load_file__ssR" title="Permalink to this definition">¶</a></dt>
-<dd><p>loads file from string and sets up <a class="reference internal" href="#mobireader::handler__header_handlerP" title="mobireader::handler"><tt class="xref cpp cpp-member docutils literal"><span class="pre">handler</span></tt></a> and <a class="reference internal" href="#mobireader::file__ifstreamP" title="mobireader::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a> pointers.</p>
+<dd><p>loads file from path in input_file_name string and sets up <a class="reference internal" href="#mobireader::handler__header_handlerP" title="mobireader::handler"><tt class="xref cpp cpp-member docutils literal"><span class="pre">handler</span></tt></a> and <a class="reference internal" href="#mobireader::file__ifstreamP" title="mobireader::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a> pointers.</p>
 </dd></dl>
 
 </div></blockquote>
@@ -177,12 +178,14 @@ void <tt class="descclassname">mobireader::</tt><tt class="descname">load_file</
 <div><dl class="function">
 <dt id="mobireader::mobireader__ssR">
  <tt class="descclassname">mobireader::</tt><tt class="descname">mobireader</tt><big>(</big>std::string&amp; <em>input_file_name</em><big>)</big><a class="headerlink" href="#mobireader::mobireader__ssR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Does all the magic necessary, calls <a class="reference internal" href="#mobireader::load_file__ssR" title="mobireader::load_file"><tt class="xref cpp cpp-func docutils literal"><span class="pre">mobireader::load_file()</span></tt></a> for input_file_name</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="mobireader::mobireader__mobireaderCR">
  <tt class="descclassname">mobireader::</tt><tt class="descname">mobireader</tt><big>(</big>const mobireader&amp; <em>m</em><big>)</big><a class="headerlink" href="#mobireader::mobireader__mobireaderCR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Copy constructor. uses <a class="reference internal" href="#mobireader::assign-operator__mobireaderCR" title="mobireader::operator="><tt class="xref cpp cpp-func docutils literal"><span class="pre">mobireader::operator=()</span></tt></a></p>
+</dd></dl>
 
 <dl class="function">
 <dt id="mobireader::mobireader">
@@ -197,13 +200,15 @@ void <tt class="descclassname">mobireader::</tt><tt class="descname">load_file</
 <dl class="function">
 <dt id="set_default_title">
 mobireader::void <tt class="descname">set_default_title</tt><big>(</big><big>)</big><a class="headerlink" href="#set_default_title" title="Permalink to this definition">¶</a></dt>
-<dd><p>reads the default title from file</p>
+<dd><p>reads the default title from file and calls <a class="reference internal" href="#mobireader::set_title__cCP" title="mobireader::set_title"><tt class="xref cpp cpp-func docutils literal"><span class="pre">mobireader::set_title()</span></tt></a> with it as an argument.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="mobireader::set_title__cCPC">
-char* <tt class="descclassname">mobireader::</tt><tt class="descname">set_title</tt><big>(</big>const char* <em>s</em><big>)</big><tt class="descclassname"> const</tt><a class="headerlink" href="#mobireader::set_title__cCPC" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="mobireader::set_title__cCP">
+char* <tt class="descclassname">mobireader::</tt><tt class="descname">set_title</tt><big>(</big>const char* <em>s</em><big>)</big><a class="headerlink" href="#mobireader::set_title__cCP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the char* s copy as the book title.</p>
+<p>Also handles deleting the old one.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="mobireader::get_titleC">
@@ -214,7 +219,7 @@ char* <tt class="descclassname">mobireader::</tt><tt class="descname">get_title<
 <dl class="function">
 <dt id="mobireader::get_htmlC">
 std::string <tt class="descclassname">mobireader::</tt><tt class="descname">get_html</tt><big>(</big><big>)</big><tt class="descclassname"> const</tt><a class="headerlink" href="#mobireader::get_htmlC" title="Permalink to this definition">¶</a></dt>
-<dd><p>iterates *reader over sections and returns html-like text.</p>
+<dd><p>iterates <tt class="xref cpp cpp-func docutils literal"><span class="pre">mobireader::reader()</span></tt> over sections and returns html-like text.</p>
 </dd></dl>
 
 <dl class="function">
@@ -226,8 +231,8 @@ std::string <tt class="descclassname">mobireader::</tt><tt class="descname">get_
 <dl class="function">
 <dt id="mobireader::assign-operator__mobireaderCR">
 void <tt class="descclassname">mobireader::</tt><tt class="descname">operator=</tt><big>(</big>const mobireader&amp; <em>m</em><big>)</big><a class="headerlink" href="#mobireader::assign-operator__mobireaderCR" title="Permalink to this definition">¶</a></dt>
-<dd><p>obviously copies mobireader class onto another instance.
-calls <a class="reference internal" href="#mobireader::load_file__ssR" title="mobireader::load_file"><tt class="xref cpp cpp-func docutils literal"><span class="pre">load_file()</span></tt></a> to check if the file is still ok.</p>
+<dd><p>obviously copies mobireader instance onto current one.
+calls <a class="reference internal" href="#mobireader::load_file__ssR" title="mobireader::load_file"><tt class="xref cpp cpp-func docutils literal"><span class="pre">load_file()</span></tt></a></p>
 </dd></dl>
 
 </div></blockquote>

@@ -189,7 +189,7 @@ public
 
 .. cpp:function:: void mobi2epub::save_to_directory() const
 
-    calls :cpp:func:`mobi2epub::directory_structure` and :cpp:func:`mobireader::get_html`
+    Calls :cpp:func:`mobi2epub::directory_structure` and :cpp:func:`mobireader::get_html`
 
     splits the html on every new chapter mark::
 

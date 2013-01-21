@@ -4,7 +4,7 @@ mobi::mobireader
 
 .. cpp:class:: mobi::mobireader
 
-    Opens .mobi files and reads as 
+    Class for handling .mobi files
 
     .. code-block:: cpp
 
@@ -30,9 +30,9 @@ private
 
     .. cpp:member:: st_mobi  mobireader::mobi_header
 
-    .. cpp:member:: vector  mobireader::section_offsets
+    .. cpp:member:: vector<uint32_t>  mobireader::section_offsets
 
-        byte offset of every data section in file
+        byte offset of every data section in the file
 
 
     .. cpp:member:: st_c_section  mobireader::c_section
@@ -40,7 +40,7 @@ private
 
     .. cpp:member:: string mobireader::input_file_name
 
-        name of the file, because ifstream is too cool to keep that.
+        name of the file, because ifstream is too cool to keep that by itself.
 
 
     .. cpp:member:: ifstream*  mobireader::file
@@ -49,13 +49,13 @@ private
 
     .. cpp:member:: compression*  mobireader::reader
 
-        Pointer to new instance of :cpp:class:`mobi::compression`
+        Pointer to a dynamic instance of :cpp:class:`mobi::compression`
 
 
 
     .. cpp:member:: header_handler* mobireader::handler
 
-        pointer to new instance of :cpp:class:`header_handler`
+        pointer to dynamic instance of :cpp:class:`header_handler`
 
     .. cpp:member:: char*  mobireader::title
 
@@ -73,7 +73,7 @@ private
 
     .. cpp:function:: mobireader::void parse_header()
 
-        loads up headers structures and section vector
+        loads up headers structures and fills the :cpp:member:`mobireader::section_offsets` vector
 
         if :cpp:member:`mobireader::db_header`   type doesn't equal BOOKMOBI, throws
         :cpp:class:`mobi::invalid_file_exception`
@@ -88,15 +88,16 @@ private
 
     .. cpp:function:: std::string mobireader::get_section_uncompressed(unsigned s) const
 
-        Handles uncompressing and returning section from a valid range of 
-        section_offsets vector
+        Handles uncompressing and returning section from a valid range of
+        :cpp:member:`mobireader::section_offsets` vector
 
-        header_out_of_range_exception
+        throws :cpp:class:`mobi::header_out_of_range_exception`
+        when... the header is out of range
 
 
     .. cpp:function:: void mobireader::load_file(std::string &input_file_name)
 
-        loads file from string and sets up :cpp:member:`handler` and :cpp:member:`file` pointers.
+        loads file from path in input_file_name string and sets up :cpp:member:`handler` and :cpp:member:`file` pointers.
 
 
 
@@ -106,11 +107,16 @@ public:
 
     .. cpp:function:: mobireader::mobireader(std::string &input_file_name)
 
+        Does all the magic necessary, calls :cpp:func:`mobireader::load_file` for input_file_name
+
 
     .. cpp:function:: mobireader::mobireader(const mobireader &m)
 
+        Copy constructor. uses :cpp:func:`mobireader::operator=`
+
 
     .. cpp:function:: mobireader::mobireader()
+
 
 
     .. cpp:function:: mobireader::~mobireader()
@@ -118,10 +124,14 @@ public:
 
     .. cpp:function:: mobireader::void set_default_title()
 
-        reads the default title from file
+        reads the default title from file and calls :cpp:func:`mobireader::set_title` with it as an argument.
 
 
-    .. cpp:function:: char* mobireader::set_title(const char *s) const
+    .. cpp:function:: char* mobireader::set_title(const char* s)
+
+        Sets the char* s copy as the book title.
+
+        Also handles deleting the old one.
 
 
     .. cpp:function:: char* mobireader::get_title() const
@@ -131,7 +141,7 @@ public:
 
     .. cpp:function:: std::string mobireader::get_html() const
 
-        iterates \*reader over sections and returns html-like text.
+        iterates :cpp:func:`mobireader::reader` over sections and returns html-like text.
 
 
     .. cpp:function:: std::string mobireader::get_file_name() const
@@ -143,6 +153,6 @@ public:
 
     .. cpp:function:: void mobireader::operator=(const mobireader &m)
 
-        obviously copies mobireader class onto another instance.
-        calls :cpp:func:`load_file` to check if the file is still ok.
+        obviously copies mobireader instance onto current one.
+        calls :cpp:func:`load_file`
 
