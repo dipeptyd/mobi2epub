@@ -46,7 +46,7 @@ private
 
         .. note::
 
-            Actually, it's the whole path used in constructor
+            Actually, it's the whole path used in the constructor
 
 
     .. cpp:member:: ifstream*  mobireader::file
