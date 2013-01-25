@@ -103,7 +103,7 @@ private
 
     .. note:: 
 
-        Currently supports path only for unix
+        Currently supports only unix
 
 .. cpp:member:: mobi::mobireader m
 
@@ -195,11 +195,11 @@ public
 
         <mbp:pagebreak/>
 
-    then iterates over it to 
+    then iterates over them to:
     
-    1. sanitize it as xhtml with :cpp:class:`epub::html::tidyhtml`
 
-    2. save it to :cpp:member:`path_tmp` /OEBPS/text
+    1. convert to xhtml with :cpp:class:`epub::html::tidyhtml`
+    2. save xhtml to :cpp:member:`path_tmp` /OEBPS/text
     3. build up :cpp:member:`itemid` and :cpp:member:`itemref` lists, which get passed to :cpp:func:`mobi2epub::gen_content_opf` later on
 
 
@@ -217,6 +217,9 @@ public
     .. note::
 
         if it somehow compiles on windows and nothing fails up to this point, should throw :cpp:class:`epub::terrible_operating_system_exception` 
+
+
+    throws :cpp:class:`epub::zip_exit_status_exception` if the zip exit code isn't equal to 0.
 
 
 
