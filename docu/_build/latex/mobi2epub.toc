@@ -1,34 +1,42 @@
 \select@language {english}
-\contentsline {chapter}{\numberline {1}mobi::}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}mobi::st\_c\_section}{3}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}st\_c\_section variables}{3}{subsection.1.1.1}
-\contentsline {subsubsection}{public}{3}{subsubsection*.4}
-\contentsline {subsection}{\numberline {1.1.2}st\_c\_section methods}{3}{subsection.1.1.2}
-\contentsline {subsubsection}{public}{3}{subsubsection*.7}
-\contentsline {section}{\numberline {1.2}mobi::mobireader}{3}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}mobireader variables}{4}{subsection.1.2.1}
-\contentsline {subsubsection}{private}{4}{subsubsection*.11}
-\contentsline {subsection}{\numberline {1.2.2}mobireader methods}{4}{subsection.1.2.2}
-\contentsline {subsubsection}{private}{4}{subsubsection*.22}
-\contentsline {subsubsection}{public:}{4}{subsubsection*.26}
-\contentsline {section}{\numberline {1.3}mobi::header\_handler}{5}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}header\_handler variables}{5}{subsection.1.3.1}
-\contentsline {subsubsection}{private}{5}{subsubsection*.39}
-\contentsline {subsection}{\numberline {1.3.2}header\_handler methods}{5}{subsection.1.3.2}
-\contentsline {subsubsection}{public:}{5}{subsubsection*.41}
-\contentsline {section}{\numberline {1.4}mobi::compression}{6}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}compression variables}{6}{subsection.1.4.1}
-\contentsline {subsubsection}{private}{6}{subsubsection*.48}
-\contentsline {subsection}{\numberline {1.4.2}compression methods}{6}{subsection.1.4.2}
-\contentsline {subsubsection}{public:}{6}{subsubsection*.50}
-\contentsline {section}{\numberline {1.5}separate mobi::functions}{7}{section.1.5}
-\contentsline {chapter}{\numberline {2}epub::}{11}{chapter.2}
-\contentsline {section}{\numberline {2.1}epub::mobi2epub}{12}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}mobi2epub variables}{12}{subsection.2.1.1}
-\contentsline {subsubsection}{private}{12}{subsubsection*.72}
-\contentsline {subsection}{\numberline {2.1.2}mobi2epub methods}{12}{subsection.2.1.2}
-\contentsline {subsubsection}{private}{12}{subsubsection*.79}
-\contentsline {subsubsection}{public}{13}{subsubsection*.86}
-\contentsline {chapter}{\numberline {3}exceptions}{15}{chapter.3}
-\contentsline {chapter}{\numberline {4}Indices and tables}{17}{chapter.4}
-\contentsline {chapter}{Index}{19}{section*.103}
+\contentsline {chapter}{\numberline {1}In-depth user guide}{3}{chapter.1}
+\contentsline {chapter}{\numberline {2}mobi::}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}mobi::st\_c\_section}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}st\_c\_section variables}{5}{subsection.2.1.1}
+\contentsline {subsubsection}{public}{5}{subsubsection*.4}
+\contentsline {subsection}{\numberline {2.1.2}st\_c\_section methods}{5}{subsection.2.1.2}
+\contentsline {subsubsection}{public}{5}{subsubsection*.7}
+\contentsline {section}{\numberline {2.2}mobi::mobireader}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}mobireader variables}{6}{subsection.2.2.1}
+\contentsline {subsubsection}{private}{6}{subsubsection*.12}
+\contentsline {subsection}{\numberline {2.2.2}mobireader methods}{6}{subsection.2.2.2}
+\contentsline {subsubsection}{private}{6}{subsubsection*.23}
+\contentsline {subsubsection}{public:}{7}{subsubsection*.28}
+\contentsline {section}{\numberline {2.3}mobi headers}{7}{section.2.3}
+\contentsline {section}{\numberline {2.4}mobi::header\_handler}{9}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}header\_handler variables}{9}{subsection.2.4.1}
+\contentsline {subsubsection}{private}{9}{subsubsection*.43}
+\contentsline {subsection}{\numberline {2.4.2}header\_handler methods}{9}{subsection.2.4.2}
+\contentsline {subsubsection}{public:}{9}{subsubsection*.45}
+\contentsline {section}{\numberline {2.5}mobi::compression}{9}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}compression variables}{10}{subsection.2.5.1}
+\contentsline {subsubsection}{private}{10}{subsubsection*.52}
+\contentsline {subsection}{\numberline {2.5.2}compression methods}{10}{subsection.2.5.2}
+\contentsline {subsubsection}{public:}{10}{subsubsection*.54}
+\contentsline {section}{\numberline {2.6}separate mobi::functions}{11}{section.2.6}
+\contentsline {chapter}{\numberline {3}epub::}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}epub::html::}{13}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}epub::html::tidyhtml}{13}{subsection.3.1.1}
+\contentsline {subsubsection}{variables}{13}{subsubsection*.68}
+\contentsline {paragraph}{private}{13}{paragraph*.69}
+\contentsline {subsubsection}{methods}{13}{subsubsection*.71}
+\contentsline {paragraph}{public}{13}{paragraph*.72}
+\contentsline {section}{\numberline {3.2}epub::mobi2epub}{14}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}mobi2epub variables}{14}{subsection.3.2.1}
+\contentsline {subsubsection}{private}{14}{subsubsection*.81}
+\contentsline {subsection}{\numberline {3.2.2}mobi2epub methods}{15}{subsection.3.2.2}
+\contentsline {subsubsection}{private}{15}{subsubsection*.88}
+\contentsline {subsubsection}{public}{16}{subsubsection*.95}
+\contentsline {chapter}{\numberline {4}exceptions}{17}{chapter.4}
+\contentsline {chapter}{\numberline {5}Indices and tables}{19}{chapter.5}
+\contentsline {chapter}{Index}{21}{section*.112}

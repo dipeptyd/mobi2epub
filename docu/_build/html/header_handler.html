@@ -28,7 +28,7 @@
     <link rel="top" title="mobi2epub 0.01 documentation" href="index.html" />
     <link rel="up" title="mobi::" href="mobi.html" />
     <link rel="next" title="mobi::compression" href="compression.html" />
-    <link rel="prev" title="mobi::mobireader" href="mobireader.html" /> 
+    <link rel="prev" title="mobi headers" href="headers.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,7 +41,7 @@
           <a href="compression.html" title="mobi::compression"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="mobireader.html" title="mobi::mobireader"
+          <a href="headers.html" title="mobi headers"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
           <li><a href="mobi.html" accesskey="U">mobi::</a> &raquo;</li> 
@@ -89,15 +89,15 @@ std::ifstream* <tt class="descclassname">header_handler::</tt><tt class="descnam
 <dl class="function">
 <dt id="header_handler::offset__unsigned-i">
 header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="descname">offset</tt><big>(</big>unsigned int <em>offset</em><big>)</big><a class="headerlink" href="#header_handler::offset__unsigned-i" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets offset in <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a>
-returns reference to self</p>
+<dd><p>Sets offset in <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a></p>
+<p>returns reference to self</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="header_handler::skip__unsigned-i">
 header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="descname">skip</tt><big>(</big>unsigned int <em>skip</em><big>)</big><a class="headerlink" href="#header_handler::skip__unsigned-i" title="Permalink to this definition">¶</a></dt>
-<dd><p>Skips n bytes in <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a>
-returns reference to self</p>
+<dd><p>Skips n bytes in <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a></p>
+<p>returns reference to self</p>
 </dd></dl>
 
 <dl class="function">
@@ -111,9 +111,9 @@ header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="de
 <dt id="header_handler::read__typeR.unsigned-i">
 header_handler&amp; <tt class="descclassname">header_handler::</tt><tt class="descname">read</tt><big>(</big>type&amp; <em>i</em>, unsigned int <em>n</em><big>)</big><a class="headerlink" href="#header_handler::read__typeR.unsigned-i" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads n times sizeof i from <a class="reference internal" href="#header_handler::file__std::ifstreamP" title="header_handler::file"><tt class="xref cpp cpp-member docutils literal"><span class="pre">file</span></tt></a> and saves it to i</p>
-<p>Should be overloaded for every necessary data type</p>
-<p>or just use templates, which i won&#8217;t implement, because there&#8217;s already
-too much syntax noise as it is, without the chevron brackets.</p>
+<p>Should be overloaded for every necessary data type combination</p>
+<p><sub>Or just use templates, but the linker seems to stupid to handle the current
+source code layout</sub></p>
 <p>returns reference to self</p>
 </dd></dl>
 
@@ -143,8 +143,8 @@ too much syntax noise as it is, without the chevron brackets.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="mobireader.html"
-                        title="previous chapter">mobi::mobireader</a></p>
+  <p class="topless"><a href="headers.html"
+                        title="previous chapter">mobi headers</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="compression.html"
                         title="next chapter">mobi::compression</a></p>
@@ -180,7 +180,7 @@ too much syntax noise as it is, without the chevron brackets.</p>
           <a href="compression.html" title="mobi::compression"
              >next</a> |</li>
         <li class="right" >
-          <a href="mobireader.html" title="mobi::mobireader"
+          <a href="headers.html" title="mobi headers"
              >previous</a> |</li>
         <li><a href="index.html">mobi2epub 0.01 documentation</a> &raquo;</li>
           <li><a href="mobi.html" >mobi::</a> &raquo;</li> 

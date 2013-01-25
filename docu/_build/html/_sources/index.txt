@@ -11,8 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   mobi.rst
+   userguide.rst
 
+   mobi.rst
 
    epub.rst
 

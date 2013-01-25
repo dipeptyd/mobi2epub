@@ -4,7 +4,7 @@ mobi::compression
 
 .. cpp:class:: mobi::compression
 
-    abstract class, providing base for :cpp:class:`pd_compression`, :cpp:class:`no_compression`
+    abstract class, provides base for :cpp:class:`pd_compression`, :cpp:class:`no_compression`
     and :cpp:class:`hd_compression`
 
 compression variables
@@ -65,7 +65,6 @@ public:
     Except it doesn't copy 0x00. Because who in the right mind would want to do that?
 
     throws :cpp:class:`mobi::not_palmdoc_compression_exception`
-
     from check at stage 5.
 
 

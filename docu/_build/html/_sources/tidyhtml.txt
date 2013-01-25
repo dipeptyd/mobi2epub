@@ -1,5 +1,5 @@
 =====================================
-epub::html
+epub::html::
 =====================================
 
 ----------------------------------
@@ -19,6 +19,8 @@ private
 '''''''''''''''
 
 .. cpp:member:: TidyDoc epub::html::tidyhtml::tdoc
+
+    http://tidy.sourceforge.net/#docs
 
 
 
@@ -43,6 +45,6 @@ public
 
 
 
-.. cpp:function:: void parse(std::string x, std::string path)
+.. cpp:function:: void parse(std::string html_code, std::string path)
 
-    it doesn't only parse, but also writes it to a file!
+    it doesn't only parse, but also writes to a file!

@@ -20,7 +20,7 @@ st_c_section::st_c_section(unsigned x)
     this->size = x;
     this->content = new uint8_t[x];
 }
-st_c_section st_c_section::operator=(st_c_section st)
+st_c_section &st_c_section::operator=(st_c_section st)
 {
     this->size = st.size;
     this->content = new uint8[st.size];
@@ -57,7 +57,7 @@ mobireader::mobireader(std::string const &input_file_name)\
 }
 mobireader::mobireader(const mobireader &m)
 {
-    *(this) = m; //TODO: is it a trap?
+    *(this) = m; //TODO: is this a trap?
 
 }
 void mobireader::operator=(const mobireader &m)
@@ -73,7 +73,7 @@ void mobireader::operator=(const mobireader &m)
     this->db_header = m.db_header;
     this->set_compression();
 
-    this->c_section = m.c_section;
+    this->c_section = (m.c_section);
 
     this->set_title(m.get_title());
 
@@ -84,7 +84,6 @@ mobireader::~mobireader()
 {
     delete reader;
     delete file;
-    delete[] c_section.content;
     delete[] title;
     delete handler;
 }
@@ -173,7 +172,7 @@ std::string mobireader::get_section_uncompressed(unsigned sec) const
 {
 
     if(sec+1>=section_offsets.size())
-        throw header_out_of_range_exception();
+        throw section_out_of_range_exception();
 
     size_t src_size = this->section_offsets[sec+1] - this->section_offsets[sec];
 
@@ -184,6 +183,13 @@ std::string mobireader::get_section_uncompressed(unsigned sec) const
     return reader->output_raw();
 
 }
+
+
+std::string mobireader::get_file_name() const
+{
+    return input_file_name;
+}
+
 
 void mobireader::set_compression()
 {

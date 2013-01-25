@@ -16,8 +16,9 @@ struct st_c_section
 {
     uint8 *content;
     unsigned size;
-    st_c_section operator=(st_c_section st);
-    st_c_section(){};
+    st_c_section &operator=(st_c_section st);
+    st_c_section():content(NULL){};
+    ~st_c_section(){delete[] content;};
     st_c_section(unsigned x);
 };
 
@@ -59,7 +60,7 @@ public:
 
 
     std::string get_html() const;
-    std::string get_file_name() const {return input_file_name;}
+    std::string get_file_name() const;
 
 
     void operator=(const mobireader &m);

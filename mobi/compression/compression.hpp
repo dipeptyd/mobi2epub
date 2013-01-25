@@ -1,3 +1,4 @@
+#pragma once
 #include "compression_exceptions.hpp"
 #include <string>
 #include <cstdint>

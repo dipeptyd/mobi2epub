@@ -22,7 +22,7 @@ exceptions
 
 .. cpp:class:: mobi::invalid_compression_type_exception
 
-.. cpp:class:: mobi::header_out_of_range_exception
+.. cpp:class:: mobi::section_out_of_range_exception
 
 .. cpp:class:: mobi::unsupported_compressiontype_exception
 

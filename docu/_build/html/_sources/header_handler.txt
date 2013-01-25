@@ -33,11 +33,13 @@ public:
 .. cpp:function:: header_handler& header_handler::offset(unsigned offset)
 
     Sets offset in :cpp:member:`file`
+
     returns reference to self
 
 .. cpp:function:: header_handler& header_handler::skip(unsigned skip)
 
     Skips n bytes in :cpp:member:`file`
+
     returns reference to self
 
 .. cpp:function:: header_handler& header_handler::read(type &i)
@@ -50,10 +52,11 @@ public:
 
     Reads n times sizeof i from :cpp:member:`file` and saves it to i
 
-    Should be overloaded for every necessary data type
+    Should be overloaded for every necessary data type combination
 
-    or just use templates, which i won't implement, because there's already 
-    too much syntax noise as it is, without the chevron brackets.
+    :sub:`Or just use templates, but the linker seems to stupid to handle the current 
+    source code layout`
+
 
     returns reference to self
 
