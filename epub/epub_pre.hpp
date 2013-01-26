@@ -1,0 +1,9 @@
+#pragma once
+#include <iostream>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sstream>
+#include <boost/format.hpp>
+#include <boost/filesystem/path.hpp>
+#include <boost/filesystem/operations.hpp>
+#include <boost/algorithm/string.hpp>
