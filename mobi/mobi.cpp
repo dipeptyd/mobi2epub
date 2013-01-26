@@ -2,6 +2,7 @@
 
 namespace mobi
 {
+std::ostream& errdbg = std::cout;
 
 
 bool strcmp_is_a_worthless_pos(char x[], const char y[], int len)
@@ -42,15 +43,15 @@ mobireader::mobireader(std::string const &input_file_name)\
     this->load_file(this->input_file_name);
     }
     catch(no_such_file_exception){
-        std::cout << "No such file\n";
+        errdbg << "No such file\n";
         return;
     }
     try{
         this->parse_header();
     }
     catch(invalid_file_exception){
-        std::cout << this->db_header.type << std::endl;
-        std::cout << "Invalid file type\n"<< std::endl;
+        errdbg << this->db_header.type << std::endl;
+        errdbg << "Invalid file type\n"<< std::endl;
         return;
     }
 

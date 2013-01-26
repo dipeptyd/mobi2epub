@@ -1,9 +1,8 @@
 #include "mobi/mobi.hpp"
 #include "epub/epub.hpp"
-//#include "optparse/OptionParser.h"
 #include <boost/program_options.hpp>
 #include <string>
-//using optparse::OptionParser;
+
 using mobi::mobireader;
 using epub::mobi2epub;
 using namespace std;

@@ -1,12 +1,5 @@
 #pragma once
-#include <iostream>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <sstream>
-#include <boost/format.hpp>
-#include <boost/filesystem/path.hpp>
-#include <boost/filesystem/operations.hpp>
-#include <boost/algorithm/string.hpp>
+#include "epub_pre.hpp"
 #include "../mobi/mobi.hpp"
 #include "epub_exceptions.hpp"
 #include "tidyhtml_wrapper.hpp"
@@ -38,6 +31,9 @@ class mobi2epub
     void gen_content_opf(std::stringstream &itemids, std::stringstream &itemrefs) const;
     void operator=(mobi2epub &m);
     mobi2epub(mobi2epub &m);
+
+    void lin_zip() const;
+    void win_zip() const; //TODO: externalize somehow?
 
     void set_out(std::string &s);
 public:

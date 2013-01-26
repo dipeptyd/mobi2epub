@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cstring>
 #include <string>
-#include <sstream>
+#include <sstream>   //precompiled headers?
 #include <vector>
 #include "mobi_exceptions.hpp"
 #include "mobi_headers.hpp"
@@ -10,6 +10,11 @@
 #include "compression/compression.hpp"
 namespace mobi
 {
+
+typedef std::vector<uint32_t> sec_vec;
+
+
+
 bool strcmp_is_a_worthless_pos(const char x[], const char y[], int len);
 
 struct st_c_section

@@ -4,6 +4,11 @@
 namespace epub
 {
 
+    //
+    //  /TODO:
+    //  http://stackoverflow.com/questions/303371/whats-the-easiest-way-to-generate-xml-in-c
+    //
+
 std::string container_xml =
 "<?xml version=\"1.0\"?>\n\
 <container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n\
@@ -97,7 +102,7 @@ void mobi2epub::directory_structure() const
 void mobi2epub::set_out(std::string &s)
 {
 
-    boost::filesystem::path path(path_out.parent_path());
+    boost::filesystem::path path(path_out.parent_path()); 
     boost::filesystem::path filepath(s);
     if(filepath.is_absolute())
     {
@@ -194,23 +199,37 @@ void mobi2epub::directory_to_epub(std::string s)
     this->set_out(s);
 }
 
-void mobi2epub::directory_to_epub() const 
+
+void mobi2epub::win_zip() const
 {
-
-
-    chdir(path_tmp.string().c_str());
-
-    #ifdef _WIN32
         throw terrible_operating_system_exception();//FIXME(not the os.)
-    #else
+}
+
+void mobi2epub::lin_zip() const
+{
+        std::string current_dir = boost::filesystem::current_path().string(); //maybe i do need it?
+
+        chdir(path_tmp.string().c_str());
 
         std::cout << "saving to " << path_out << std::endl;
 
         if(system(("zip " + (path_out.string()) + " -qr *").c_str())!=0)
             throw zip_exit_status_exception();
 
-        //chdir(current_dir.c_str());
+        chdir(current_dir.c_str());
 
+}
+
+
+void mobi2epub::directory_to_epub() const 
+{
+
+
+
+    #ifdef _WIN32
+    this->win_zip();
+    #else
+    this->lin_zip();
     #endif
         this->cleanup();
 }
