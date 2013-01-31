@@ -67,9 +67,4 @@ void no_compression::uncompress(uint8_t *src, size_t srcLen)
     this->destination.append((char *)src, srcLen);
 }
 
-
-//std::string no_compression::output_raw()
-//{
-    //return this->destination;
-//}
 }

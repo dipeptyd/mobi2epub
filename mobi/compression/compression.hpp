@@ -25,6 +25,9 @@ class no_compression:public compression
 
 class hd_compression:public compression
 {
+    public:
+    void uncompress(uint8_t *src, size_t srclen) {}
+    hd_compression() { throw foo();}
 
 };
 

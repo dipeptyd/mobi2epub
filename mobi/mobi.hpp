@@ -11,11 +11,8 @@
 namespace mobi
 {
 
-typedef std::vector<uint32_t> sec_vec;
-
-
-
-bool strcmp_is_a_worthless_pos(const char x[], const char y[], int len);
+typedef std::vector<uint32_t> tdf_vector_32;
+typedef std::string tdf_string;
 
 struct st_c_section
 {
@@ -34,10 +31,10 @@ class mobireader{
     st_palmdoc_db db_header;
     st_palmdoc    pd_header;
     st_mobi     mobi_header;
-    std::vector<uint32>    section_offsets;
+    tdf_vector_32    section_offsets;
     st_c_section c_section;
 
-    std::string input_file_name;
+    tdf_string input_file_name;
 
     //#########################
     //#########################
@@ -50,7 +47,7 @@ class mobireader{
     void parse_header();
     void set_compression();
 
-    std::string get_section_uncompressed(unsigned sec) const;
+    tdf_string get_section_uncompressed(unsigned sec) const;
 public:
     mobireader(std::string const &input_file_name);
     mobireader(const mobireader &m);
@@ -64,8 +61,8 @@ public:
     const char *get_title() const;
 
 
-    std::string get_html() const;
-    std::string get_file_name() const;
+    tdf_string get_html() const;
+    tdf_string get_file_name() const;
 
 
     void operator=(const mobireader &m);

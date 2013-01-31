@@ -3,4 +3,5 @@
 namespace mobi
 {
 class not_palmdoc_compression_exception:public std::exception{};
+class foo:public std::exception{};
 }

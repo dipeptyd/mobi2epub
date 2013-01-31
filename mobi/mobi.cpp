@@ -4,18 +4,6 @@ namespace mobi
 {
 std::ostream& errdbg = std::cout;
 
-
-bool strcmp_is_a_worthless_pos(char x[], const char y[], int len)
-{
-    for(int i=0;i<len;i++)
-    {
-        if(x[i] != y[i])
-        return false;
-    }
-    return true;
-}
-
-
 st_c_section::st_c_section(unsigned x)
 {
     this->size = x;
@@ -39,21 +27,8 @@ mobireader::mobireader(std::string const &input_file_name)\
     ,title(0)
 
 {
-    try{
     this->load_file(this->input_file_name);
-    }
-    catch(no_such_file_exception){
-        errdbg << "No such file\n";
-        return;
-    }
-    try{
-        this->parse_header();
-    }
-    catch(invalid_file_exception){
-        errdbg << this->db_header.type << std::endl;
-        errdbg << "Invalid file type\n"<< std::endl;
-        return;
-    }
+    this->parse_header();
 
 }
 mobireader::mobireader(const mobireader &m)
@@ -94,7 +69,7 @@ void mobireader::parse_header()
 
     this->handler->read(db_header);
 
-  if(!strcmp_is_a_worthless_pos(db_header.type,MOBI_TYPE,8))
+  if(strncmp(db_header.type,MOBI_TYPE,8)!=0)
       throw invalid_file_exception();
 
     uint32 section_offset;
@@ -144,14 +119,13 @@ void mobireader::set_default_title()
 
             this->set_title(_title);
             delete[] _title;
-
-
         }
 
 
 void mobireader::load_file(std::string const &input_file_name)
 {
     this->file = new std::ifstream(input_file_name.c_str());
+
     if(!file->good())
         throw no_such_file_exception();
     this->handler = new header_handler(this->file);
@@ -177,8 +151,9 @@ std::string mobireader::get_section_uncompressed(unsigned sec) const
 
     size_t src_size = this->section_offsets[sec+1] - this->section_offsets[sec];
 
+    unsigned short last_seven_bits = 127;
     handler->offset(section_offsets[sec]).read(c_section.content, src_size);
-    unsigned trash = c_section.content[src_size-1] & 127; 
+    unsigned trash = c_section.content[src_size-1] & last_seven_bits; 
 
     reader->uncompress(c_section.content, src_size-trash); //ommit unnecessary bytes
     return reader->output_raw();
@@ -205,7 +180,7 @@ void mobireader::set_compression()
     }
     else if(this->pd_header.compression == COMPRESSION_HUFFDIC)
     {
-        throw unsupported_compressiontype_exception();
+        reader = new hd_compression;
     }
     else
     {

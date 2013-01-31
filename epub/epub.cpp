@@ -231,6 +231,6 @@ void mobi2epub::directory_to_epub() const
     #else
     this->lin_zip();
     #endif
-        this->cleanup();
+    this->cleanup();
 }
 }
