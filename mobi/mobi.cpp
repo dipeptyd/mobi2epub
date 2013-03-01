@@ -92,8 +92,9 @@ void mobireader::set_title(const char *s)
         delete[] title;
     }
 
-    this->title = new char[strlen(s)+1];
-    strcpy(title, s);
+    int title_len = strlen(s)+1;
+    this->title = new char[title_len];
+    memcpy(title, s, title_len);
 
 }
 

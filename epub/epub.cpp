@@ -10,13 +10,14 @@ namespace epub
     //
 
 std::string container_xml =
-"<?xml version=\"1.0\"?>\n\
-<container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n\
-   <rootfiles>\n\
-      <rootfile full-path=\"OEBPS/content.opf\" media-type=\"application/oebps-package+xml\"/>\n\
-      \n\
-   </rootfiles>\n\
-</container>";
+
+R"(<?xml version="1.0"?>
+<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+   <rootfiles>
+      <rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>
+   </rootfiles>
+</container>)";
+
 std::string mimetype = "application/epub+zip";
 
 std::string itemid  = "    <item id=\"%1%\" href=\"text/%1%\" media-type=\"application/xhtml+xml\" />\n";
@@ -25,23 +26,23 @@ std::string itemref = "    <itemref idref=\"%1%\" />\n";
 //%1% - <item id="foo" href="text/foo.html" media-type="text/html(application/xhtml+xml?)" />"
 //%2% - <itemref idref=id />
 
-std::string content_opf = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n\
-<package xmlns=\"http://www.idpf.org/2007/opf\" unique-identifier=\"BookId\" version=\"2.0\">\n\
-    <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:opf=\"http://www.idpf.org/2007/opf\">\n\
-        <dc:title>%1%</dc:title> \n\
-    </metadata>\n\
-    <manifest>\n\n\
-\
-%2%\n\
-\
-    </manifest>\n\
-    <spine toc=\"ncx\">\n\n\
-\
-%3%\n\
-\
-    </spine>\n\
-</package>\n\
-";
+std::string content_opf = 
+
+R"(<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:title>%1%</dc:title>
+    </metadata>
+    <manifest>
+%2%
+    </manifest>
+    <spine toc="ncx">
+
+%3%
+
+    </spine>
+</package>
+)";
 
 mobi2epub::mobi2epub(const mobi::mobireader &m, bool safe, bool no_cleanup):\
     safe(safe),no_cleanup(no_cleanup),vanilla_out(true)

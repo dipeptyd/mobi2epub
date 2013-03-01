@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     }
 
     e.directory_to_epub();
-    return 0;
+    //return 0; //obsolete in c++, oh shi.
 }
 
 
