@@ -1,4 +1,6 @@
 #include "mobi_headers_handler.hpp"
+//#include "mobi_headers.hpp"
+//#include <fstream>
 namespace mobi
 {
 
@@ -20,15 +22,18 @@ namespace mobi
     }
 
 
-    //template<typename type>
+    //template<typename type> //clearly too sober.
     //header_handler &header_handler::read(type &t)
     //{
         //file->read((char *) &t, sizeof(t));
+        //bswap(t);
+        //return *this;
     //}
+    
     header_handler &header_handler::read(st_palmdoc_db &db_header)
     {
-        file->read((char *) &db_header, PALMDOC_DB_HEADER_LEN);
-        unretardify_header(db_header);
+        file->read((char *) &db_header, sizeof(db_header));
+        bswap(db_header);
         return *this;
     }
     header_handler &header_handler::read(uint32_t &i)
@@ -44,14 +49,14 @@ namespace mobi
     }
     header_handler &header_handler::read(st_palmdoc &pd_header)
     {
-        file->read((char *) &pd_header, PALMDOC_HEADER_LEN);
-        unretardify_header(pd_header);
+        file->read((char *) &pd_header, sizeof(pd_header));
+        bswap(pd_header);
         return *this;
     }
     header_handler &header_handler::read(st_mobi &st_mobi_)
     {
         file->read((char *) &st_mobi_, MOBI_HEADER_LEN);
-        unretardify_header(st_mobi_);
+        bswap(st_mobi_);
         return *this;
     }
     

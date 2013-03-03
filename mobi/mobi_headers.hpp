@@ -13,15 +13,6 @@ typedef uint8_t uint8;
 typedef uint16_t uint16;
 typedef uint32_t uint32;
 typedef uint64_t uint64;
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-inline void bswap(uint16_t &x){x = __builtin_bswap32(x << 16);}
-inline void bswap(uint32_t &x){x = __builtin_bswap32(x);}
-inline void bswap(uint64_t &x){x = __builtin_bswap64(x);}
-#else
-inline void bswap(uint16_t &x){}
-inline void bswap(uint32_t &x){}
-inline void bswap(uint64_t &x){}
-#endif
 
 struct st_palmdoc_db;
 struct st_palmdoc;
@@ -121,3 +112,18 @@ static_assert((sizeof(st_mobi)==MOBI_HEADER_LEN),"st_mobi");
 void unretardify_header(st_palmdoc_db &x);
 void unretardify_header(st_palmdoc &x);
 void unretardify_header(st_mobi &x);
+
+
+
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+inline void bswap(uint16_t &x){x = __builtin_bswap32(x << 16);}
+inline void bswap(uint32_t &x){x = __builtin_bswap32(x);}
+inline void bswap(uint64_t &x){x = __builtin_bswap64(x);}
+inline void bswap(st_palmdoc_db &x){unretardify_header(x);}
+inline void bswap(st_palmdoc &x)   {unretardify_header(x);}
+inline void bswap(st_mobi &x)      {unretardify_header(x);}
+#else
+inline void bswap(uint16_t &x){}
+inline void bswap(uint32_t &x){}
+inline void bswap(uint64_t &x){}
+#endif

@@ -14,11 +14,8 @@ namespace mobi
             header_handler &offset(unsigned offset);//TO
             header_handler(std::ifstream *file);
             header_handler &skip(unsigned skip);
-            //TODO: can i make this less repetitive.
-            //
             //template<typename type>
             //header_handler &read(type &t);
-            //nope, too much work for solving this with templates
             header_handler &read(char *i, unsigned n);
             header_handler &read(uint8_t *i, unsigned n);
             header_handler &read(st_palmdoc_db &db_header);
